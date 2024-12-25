@@ -1,0 +1,22 @@
+.contact-method{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    margin: 10px 0px;
+}
+.contact-method .method-image{
+    height: 45px;
+    width: 45px;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    overflow: hidden;
+    /* padding: 40px; */
+}
+.contact-method .method-image img{
+    height: 20px;
+}

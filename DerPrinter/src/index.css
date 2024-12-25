@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+body{
+    font-family: "Inter", sans-serif;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(45deg);
+  }
+  100% {
+    transform: rotate(405deg);
+  }
+}
+.animate-spin-slow {
+  animation: spin 10s linear infinite;
+}
+.blog-details-img-container{
+  height: 80vh;
+  width: 70vw;
+  margin-bottom: 30px !important;
+  margin: auto;
+}
+
+@media (max-width: 768px) {
+  .blog-details-img-container{
+    width: 100%;
+  }
+}
+.full-width{
+  width: 100% !important;
+}
+.container{
+    margin: auto;
+    max-width: 1300px;
+    padding: 20px;
+}
+
+.blog-img{
+    height: 400px;
+}
+.blog-card{
+    background-color: #EFEFEF;
+    border-radius: 60px !important;
+    padding-bottom: 50px !important;
+}
+.blog-hero {
+    border-radius: 60px !important;
+}
+.hovered-blog:hover{
+  text-decoration: underline;
+  color: blue;
+  cursor: pointer;
+}
+.blog-title{
+    font-size: 60px;
+    font-weight: 700;
+    margin-top: 80px !important;
+    margin-bottom: 30px !important;
+    font-style: italic;
+}
+@media (max-width: 768px) { 
+    .blog-hero{
+        border-radius: 10px !important;
+        box-shadow: none !important;
+    }   
+    .blog-hero-text, .blog-hero-img{
+        padding: 10px !important;
+    }   
+}
+.embla {
+  position: relative;
+  overflow: hidden;
+}
+
+.embla__container {
+  display: flex;
+}
+
+.embla__slide {
+  flex-shrink: 0;
+  width: 100%;
+}
+.prod-list-title h2{
+  font-size: 25px;
+  font-weight: 600;
+
+}
+.prod-list-title p{
+  color: gray;
+}
+.btnLog {
+  @apply border border-gray-300 py-4 rounded-[10px] lg:text-[22px] md:text-[20px] text-[16px] font-medium;
+}
+.inputLogin {
+  @apply w-full border mb-2 rounded-[10px] md:p-5 p-4 lg:text-[16px] md:text-[14px] text-[12px] focus:outline-none focus:ring-2 focus:ring-blue-500;
+}
+.txtFooter {
+  @apply xl:text-[20px] lg:text-[17px] md:text-[12px] text-[14px] md:space-y-[18px] text-white/60;
+}
+.headFooter {
+  @apply font-bold xl:text-[26px] lg:text-[24px] md:text-[20px] sm:text-[18px] text-[16px] mb-4 text-white;
+}
+.txtNavbar {
+  @apply hover:underline xl:text-[16px] text-[12px];
+}
+.liNav {
+  @apply sm:text-[18px] text-[15px] hover:underline;
+}
+.social-links{
+  padding: 15px 0px;
+  border-top: 1px solid #00000080;
+}
+.social-links h3{
+  font-size: 20px ;
+  font-weight: 600;
+  line-height: 25px;
+  color: #000000;
+  margin-bottom: 10px;
+}
+.social-icons{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 15px;
+}

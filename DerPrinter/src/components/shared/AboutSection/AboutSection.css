@@ -1,0 +1,76 @@
+.about-us-container {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  gap: 20px;
+  background-color: #fff;
+  padding: 50px 0px ;
+  padding-top: 80px !important ;
+  /* لون الخلفية */
+}
+
+.image-section {
+  flex: 1;
+  /* اجعل الصورة تأخذ نصف العرض */
+}
+
+.about-us-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  /* لجعل الحواف مستديرة */
+}
+
+.text-section {
+  flex: 1;
+  /* النص يأخذ النصف الآخر من العرض */
+  padding-left: 20px;
+}
+
+.desc {
+  position: relative;
+  padding-left: 20px !important;
+}
+
+.desc:first-child {
+  margin-bottom: 30px;
+}
+
+.desc::before {
+  content: "";
+  background-color: orange;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 4px;
+  border-radius: 2px;
+}
+
+.text-section h2 {
+  font-size: 24px;
+  margin-bottom: 8px;
+  color: #000;
+  text-align: center !important;
+}
+
+.text-section h4 {
+  font-size: 18px;
+  margin-bottom: 16px;
+  color: #555;
+  text-align: center !important;
+  margin-bottom: 50px !important;
+}
+
+.text-content p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+@media (max-width:768px) {
+  .about-us-container {
+    flex-direction: column;
+  }
+}

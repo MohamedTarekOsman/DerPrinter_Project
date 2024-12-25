@@ -1,0 +1,12 @@
+.card-review{
+    max-width: 98% !important;
+    /* padding: 20px !important; */
+}
+.hr{
+    background-color: white !important;
+    height: 2px;
+    margin: 20px 0px;
+}
+.review-list{
+    padding: 60px 0px !important;
+}

@@ -1,0 +1,50 @@
+//products
+export const CREATE_PRODUCTS="CREATE_PRODUCTS"
+export const GET_ALL_PRODUCTS="GET_ALL_PRODUCTS"
+export const GET_ONE_PRODUCT="GET_ONE_PRODUCT"
+export const UPDATE_PRODUCTS="UPDATE_PRODUCTS"
+export const DELETE_PRODUCTS="DELETE_PRODUCTS"
+
+// Categories
+export const CREATE_CATEGORY="CREATE_CATEGORY"
+export const GET_ALL_CATEGORIES="GET_ALL_CATEGORIES"
+export const UPDATE_CATEGORY="UPDATE_CATEGORY"
+export const DELETE_CATEGORY="DELETE_CATEGORY"
+
+// Auth
+export const LOGIN = "LOGIN";
+export const LOGOUT = "LOGOUT";
+export const REGISTER = "REGISTER";
+export const AUTH_ERROR = "AUTH_ERROR";
+
+// orders
+export const GET_ALL_ORDERS="GET_ALL_ORDERS"
+export const UPDATE_ORDER="UPDATE_ORDER"
+export const CREATE_ORDERS="CREATE_ORDERS"
+export const UPDATE_ORDER_IMG="UPDATE_ORDER_IMG"
+export const UPDATE_USER_ORDER_IMG="UPDATE_USER_ORDER_IMG"
+
+// Sliders
+export const GET_ALL_SLIDERS="GET_ALL_SLIDERS"
+export const UPDATE_SLIDER="UPDATE_SLIDER"
+export const CREATE_SLIDER="CREATE_SLIDER"
+export const DELETE_SLIDER="DELETE_SLIDER"
+
+// Blogs
+export const GET_ALL_BLOGS="GET_ALL_BLOGS"
+export const UPDATE_BLOG="UPDATE_BLOG"
+export const CREATE_BLOG="CREATE_BLOG"
+export const DELETE_BLOG="DELETE_BLOG"
+
+// user
+export const ADD_TO_CART="ADD_TO_CART"
+export const DELETE_FROM_CART="DELETE_FROM_CART"
+export const GET_ONE_USER="GET_ONE_USER"
+export const ADD_ADDRESS="ADD_ADDRESS"
+export const DELETE_ADDRESS="DELETE_ADDRESS"
+export const UPDATE_CART_OPTIONS="UPDATE_CART_OPTIONS"
+export const CLEAR_CART="CLEAR_CART"
+
+
+//error
+export const GET_ERROR="GET_ERROR"
