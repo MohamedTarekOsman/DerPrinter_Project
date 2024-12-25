@@ -1,0 +1,37 @@
+version: "3.8"
+
+services:
+  backend:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: backend
+    hostname: backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - backend_data:/data
+    networks:
+      - der-printer
+
+  frontend:
+    build:
+      context: ./DerPrinter
+      dockerfile: Dockerfile
+    container_name: frontend
+    hostname: frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    volumes:
+      - frontend_data:/data
+    networks:
+      - der-printer
+
+volumes:
+  backend_data:
+  frontend_data:
+
+networks:
+  der-printer:
