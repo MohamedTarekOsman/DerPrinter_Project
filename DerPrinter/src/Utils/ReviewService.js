@@ -1,5 +1,4 @@
 import axios from "axios";
-import baseUrl from "../Api/baseUrl";
 
 export const submitReview = async ({ userId, rating, reviewText }) => {
   const requestBody = {
@@ -9,7 +8,7 @@ export const submitReview = async ({ userId, rating, reviewText }) => {
 
   try {
     const response = await axios.patch(
-      `${baseUrl}/api/v1/user/rating/${userId}`,
+      `http://backend:9000/api/v1/user/rating/${userId}`,
       requestBody,
       {
         headers: { "Content-Type": "application/json" },

@@ -1,7 +1,5 @@
-import baseUrl from "../Api/baseUrl";
-
 export async function fetchData(link) {
-    const url = `${baseUrl}/api/v1/${link}`;
+    const url = `http://backend:9000/api/v1/${link}`;
   
     try {
       const response = await fetch(url);
@@ -20,7 +18,7 @@ export async function fetchData(link) {
   
   // Fetch a single product by ID
   export async function fetchSingleProduct(link) {
-    const url = `${baseUrl}/api/v1/${link}`;
+    const url = `http://backend:9000/api/v1/${link}`;
   
     try {
       const response = await fetch(url);
@@ -49,7 +47,7 @@ export async function fetchData(link) {
   }
 
   export async function fetchHomeOrBlogsData(link) {
-    const url = `${baseUrl}/api/v1/${link}`;
+    const url = `http://backend:9000/api/v1/${link}`;
   
     try {
       const response = await fetch(url);
@@ -67,7 +65,7 @@ export async function fetchData(link) {
   }
 
   export async function fetchSingleBlogProduct(link) {
-    const url = `${baseUrl}/api/v1/${link}`;
+    const url = `http://backend:9000/api/v1/${link}`;
   
     try {
       const response = await fetch(url);
