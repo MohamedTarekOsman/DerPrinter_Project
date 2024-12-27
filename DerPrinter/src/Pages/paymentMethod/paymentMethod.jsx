@@ -46,22 +46,28 @@ const PaymentMethod = () => {
 
 
       // const productImages = userRes.data.cart.map(item => item.product.image);
-      const productImages = userRes.data.cart.map(item => ({
+      const productImages = userRes.data.cart
+      .filter(item => item.image !== null) // Filter out items with null images
+      .map(item => ({
         image: item.image,
         status: "pending",
-    }));
+      }));
+
     
 
-      const totalPrice = userRes.data.cart
-      .reduce((sum, item) => sum + item.price, 0);
-  
-      try{
+    const totalPrice = userRes.data.cart.reduce((sum, item) => sum + item.price, 0) 
+    + (userRes?.data?.cart[0]?.orderDelivery === "Standard+ " 
+        ? 20 
+        : userRes?.data?.cart[0]?.orderDelivery === "Overnight" 
+          ? 43 
+          : 0);
+  try{
         await dispatch(createOrder({
           name: productNames,
           paymentOption: selectedMethod,
           orderDelivery:userRes?.data?.cart[0]?.orderDelivery,
           userId: user._id,
-          price: totalPrice+(totalPrice*19/100),
+          price: totalPrice,
           status:"pending",
           chosenAddress:userRes?.data?.addresses[userRes.data.chosenAddress],
           images:productImages,

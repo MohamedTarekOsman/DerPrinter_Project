@@ -22,9 +22,9 @@ const Cart = () => {
 
   const cartItems = userRes?.data?.cart || []; 
   useEffect(() => {
-    if(userRes.data.cart &&userRes.data.cart.length>0 && userRes.data.cart[0].orderDelivery=="Standard+ "){
+    if(userRes?.data?.cart &&userRes?.data?.cart?.length>0 && userRes?.data?.cart[0].orderDelivery=="Standard+ "){
       setDelevaryPrice(20)
-    }else if(userRes.data.cart &&userRes.data.cart.length>0 && userRes.data.cart[0].orderDelivery=="Overnight"){
+    }else if(userRes?.data?.cart &&userRes?.data?.cart?.length>0 && userRes?.data?.cart[0].orderDelivery=="Overnight"){
       setDelevaryPrice(43)
     }else{  
       setDelevaryPrice(0)
@@ -107,14 +107,15 @@ const Cart = () => {
           </div>
           <div className='text-xl font-bold flex flex-col items-end'>
             <p className='mb-10'>
-              {cartItems.reduce((total, item) => total + item.product.SalePercent>0 ?(item.price-((item.product.SalePercent/100)*item.price)):item.price, 0).toFixed(2)}€
+              {cartItems.reduce((total, item) => total + item.price, 0).toFixed(2)}€
             </p>
             <p className='mb-10'>
               {delivaryPrice}€
               {/* {(cartItems.reduce((total, item) => total + item.product.SalePercent>0 ?(item.price-((item.product.SalePercent/100)*item.price)):item.price, 0) * 0.19).toFixed(2)}€ */}
             </p>
             <p className='mb-10'>
-              {cartItems.reduce((total, item) => total + item.product.SalePercent>0 ?(item.price-((item.product.SalePercent/100)*item.price))* 1.19:item.price * 1.19, 0).toFixed(2)}€
+            {(cartItems.reduce((total, item) => total + item.price, 0)+delivaryPrice).toFixed(2)}€
+
             </p>
           </div>
         </div>
