@@ -33,7 +33,7 @@ const Customizations = () => {
 
 return (
   <div className="min-h-screen bg-white flex flex-col px-4 py-10 lg:px-20 items-center">
-    <div className="bg-gradient-to-b from-gray-100 to-gray-50 rounded-lg w-full p-6 lg:p-8 flex flex-col-reverse lg:grid lg:grid-cols-4 gap-6">
+    <div className="bg-gradient-to-b from-gray-100 to-gray-50 rounded-lg w-full p-6 lg:p-8 flex flex-col lg:grid lg:grid-cols-4 gap-6">
       {/* FormSection for all screen sizes */}
       <div className="lg:col-span-3">
         <FormSection 
