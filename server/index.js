@@ -1,6 +1,8 @@
 const express=require('express')
 const cors=require('cors')
+const https = require('https');
 const app= express();
+const fs=require('fs');
 const dotenv=require('dotenv');
 const mountRoutes=require('./routes');
 app.use(cors());
@@ -11,10 +13,19 @@ mountRoutes(app)
 const dbconnection = require('./config/dataBase');
 dbconnection()
 
+
+const sslOptions = {
+    key: fs.readFileSync('ssl/key.pem'), // Path to your private key
+    cert: fs.readFileSync('ssl/cert.pem'), // Path to your certificate
+  };
+
 const port=process.env.PORT||9000
-const server=app.listen(port,() => {
-    console.log(`Server is running on port ${port}`);
-});
+const server = https.createServer(sslOptions, app).listen(port, () => {
+    console.log(`HTTPS Server is running on https://localhost:${port}`);
+  });
+// const server=app.listen(port,() => {
+//     console.log(`Server is running on port ${port}`);
+// });
 
 //Handel Rejection outside of express
 process.on("unhandledRejection",(err)=>{

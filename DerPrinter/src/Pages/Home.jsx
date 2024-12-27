@@ -17,7 +17,7 @@ import { fetchHomeOrBlogsData } from "../Utils/GetApi";
       async function loadHomeData() {
         const data = await fetchHomeOrBlogsData("homePage");
         setHomeData(data);
-        setSlidesData ([data[0].slider1,data[0].slider2,data[0].slider3,data[0].slider4])
+        setSlidesData ([data[0]?.slider1,data[0]?.slider2,data[0]?.slider3,data[0]?.slider4])
         setLoading(false);
         console.log("Our Home DATA",data)
       }
@@ -31,7 +31,7 @@ import { fetchHomeOrBlogsData } from "../Utils/GetApi";
         title={"Ausgewählte Produkte"}
         subTitle={"Von Ideen zum Druck – einzigartig, wie du es willst"}
       />
-      {!loading?<AboutUs  data={homeData[0].AboutSection}/>:<p>Loading</p>}
+      {!loading?<AboutUs  data={homeData[0]?.AboutSection}/>:<p>Loading</p>}
       <ProductSlider />
       <FeaturesList />
       {!loading && <BannerSection data={homeData[0]?.HintSection}/>}

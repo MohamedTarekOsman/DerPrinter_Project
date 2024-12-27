@@ -1,12 +1,13 @@
 /* eslint-disable no-unused-vars */
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 import Cookies from 'universal-cookie';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteFromCart, getUserById } from '../../Redux/actions/usersAction';
 import { Link } from 'react-router-dom'
 import toast from 'react-hot-toast';
 const Cart = () => {
+  const [delivaryPrice,setDelevaryPrice]=useState(0)
   const cookies = new Cookies();
   const user = cookies.get("user");
   const dispatch = useDispatch();
@@ -20,7 +21,15 @@ const Cart = () => {
   }, [dispatch, user]);
 
   const cartItems = userRes?.data?.cart || []; 
-
+  useEffect(() => {
+    if(userRes?.data?.cart &&userRes?.data?.cart?.length>0 && userRes?.data?.cart[0].orderDelivery=="Standard+ "){
+      setDelevaryPrice(20)
+    }else if(userRes?.data?.cart &&userRes?.data?.cart?.length>0 && userRes?.data?.cart[0].orderDelivery=="Overnight"){
+      setDelevaryPrice(43)
+    }else{  
+      setDelevaryPrice(0)
+    }
+  }, [userRes]);
 
 
   const handleDeleteItem = async (item) => {
@@ -67,7 +76,7 @@ const Cart = () => {
                   <h2 className='font-bold text-2xl'>{item.product.name}</h2>
                   <p className='text-gray-600'>Bestellung: {item.orderDelivery}</p>
                   <p className='text-gray-600'>Ausgewählte Artikel: {item.selectedItems.join(", ")}</p>
-                  <p className='text-gray-600'>Preis: {item.product.SalePercent>0 ?(item.price-((item.product.SalePercent/100)*item.price)):item.price}€</p>
+                  <p className='text-gray-600'>Preis: {item.price}€</p>
                 </div>
               </div>
               <hr />
@@ -79,7 +88,7 @@ const Cart = () => {
                 </p>
                 <div className='flex justify-between items-center md:gap-5'>
                   <p className='font-bold text-xl'>Nettopreis</p>
-                  <p className='font-bold text-xl'>{item.product.SalePercent>0 ?(item.price-((item.product.SalePercent/100)*item.price)):item.price}€</p>
+                  <p className='font-bold text-xl'>{item.price}€</p>
                 </div>
               </div>
               <hr/>
@@ -93,18 +102,20 @@ const Cart = () => {
         <div className='flex py-5 justify-between md:justify-end'>
           <div className='mr-24 md:mr-48 text-xl font-semibold'>
             <p className='mb-10'>Nettopreis</p>
-            <p className='mb-10'>MwSt. 19 %</p>
+            <p className='mb-10'>Lieferung</p>
             <p className='mb-10'>Gesamtpreis</p>
           </div>
           <div className='text-xl font-bold flex flex-col items-end'>
             <p className='mb-10'>
-              {cartItems.reduce((total, item) => total + item.product.SalePercent>0 ?(item.price-((item.product.SalePercent/100)*item.price)):item.price, 0).toFixed(2)}€
+              {cartItems.reduce((total, item) => total + item.price, 0).toFixed(2)}€
             </p>
             <p className='mb-10'>
-              {(cartItems.reduce((total, item) => total + item.product.SalePercent>0 ?(item.price-((item.product.SalePercent/100)*item.price)):item.price, 0) * 0.19).toFixed(2)}€
+              {delivaryPrice}€
+              {/* {(cartItems.reduce((total, item) => total + item.product.SalePercent>0 ?(item.price-((item.product.SalePercent/100)*item.price)):item.price, 0) * 0.19).toFixed(2)}€ */}
             </p>
             <p className='mb-10'>
-              {cartItems.reduce((total, item) => total + item.product.SalePercent>0 ?(item.price-((item.product.SalePercent/100)*item.price))* 1.19:item.price * 1.19, 0).toFixed(2)}€
+            {(cartItems.reduce((total, item) => total + item.price, 0)+delivaryPrice).toFixed(2)}€
+
             </p>
           </div>
         </div>

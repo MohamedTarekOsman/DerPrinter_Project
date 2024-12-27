@@ -65,11 +65,11 @@ const Footer = () => {
               <ul className="md:space-y-[18px] space-y-[15px]">
                 <li className="flex items-center space-x-2">
                   <img src={telephone} alt="telephone" className="lg:h-6 h-5" />
-                  <span className="txtFooter">+49 30 12345678</span>
+                  <span className="txtFooter">+49 163 3503501</span>
                 </li>
                 <li className="flex items-center space-x-2">
                   <img src={gmail} alt="Email" className="lg:h-6 h-5" />
-                  <span className="txtFooter">printservices@gmail.com</span>
+                  <span className="txtFooter">infp@derprinter.de</span>
                 </li>
               </ul>
             </div>
@@ -112,7 +112,7 @@ const Footer = () => {
 
           <div className="flex mx-auto items-center lg:justify-around justify-between w-full">
             <div className="flex gap-3">
-              <a href="#" className="block" target="_blank">
+              <a href="https://www.facebook.com/profile.php?id=61570682215802&mibextid=ZbWKwL" className="block" target="_blank">
                 <img src={facebook} alt="" />
               </a>
               <a href="#" className="block " target="_blank">

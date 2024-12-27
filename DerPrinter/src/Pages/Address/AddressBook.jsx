@@ -190,7 +190,7 @@ const AddressBook = () => {
                       handleChosenAddress(index);
                     }}
                   >
-                    <FiCheck className="text-2xl cursor-pointer" />
+                    <FiCheck className="text-4xl text-green-700 font-extrabold hover:text-green-400 ml-2 cursor-pointer" />
                   </td>
                 </tr>
               ))}
