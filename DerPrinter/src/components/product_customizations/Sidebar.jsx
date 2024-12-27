@@ -20,7 +20,7 @@ const Sidebar = ({ firstProduct, currentPrice, selectedOptions, uploadedImage, s
       const formData = {
         productId: id,
         selectedItems: Object.values(selectedOptions),
-        price: currentPrice,
+        price: firstProduct.SalePercent>0?((currentPrice-((firstProduct?.SalePercent / 100) * currentPrice))+((19 / 100) * (currentPrice-((firstProduct?.SalePercent / 100) * currentPrice)))).toFixed(2):((19 / 100) * currentPrice + currentPrice).toFixed(2),
         image: uploadedImage,
         orderDelivery: selectedDelivery.label,
       };

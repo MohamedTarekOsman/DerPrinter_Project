@@ -1,9 +1,10 @@
 import toast from "react-hot-toast";
-import { FiDelete, FiPlus } from "react-icons/fi";
+import { FiPlus } from "react-icons/fi";
 import { addAddress, deleteAddress, getUserById } from "../../Redux/actions/usersAction";
 import { useEffect, useState } from "react";
 import Cookies from "universal-cookie";
 import { useDispatch, useSelector } from "react-redux";
+import { CgTrash } from "react-icons/cg";
 
 const UserAddress = () => {
     const cookies = new Cookies();
@@ -180,7 +181,7 @@ const UserAddress = () => {
                             handleDeleteAddress(address);
                           }}
                         >
-                          <FiDelete className="text-2xl cursor-pointer" />
+                          <CgTrash className="text-4xl ml-4 text-red-700 hover:text-red-400 cursor-pointer" />
                         </td>
                       </tr>
                     ))}

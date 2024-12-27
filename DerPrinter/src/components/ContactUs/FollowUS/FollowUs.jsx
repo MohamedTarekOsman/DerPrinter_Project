@@ -6,7 +6,7 @@ import instagram from '../../../assets/svg/instagram.svg';
 
 const FollowUs = () => {
     const socialLinks = [
-        {icon:facebook, link:"#"},
+        {icon:facebook, link:"https://www.facebook.com/profile.php?id=61570682215802&mibextid=ZbWKwL"},
         {icon:twitter, link:"#"},
         {icon:instagram, link:"#"},
         {icon:social, link:"#"},
