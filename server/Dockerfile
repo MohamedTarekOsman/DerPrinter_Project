@@ -8,8 +8,7 @@ RUN npm install
 
 COPY . .
 
-# Copy SSL certificates
-COPY ssl/ /app/
+COPY ./ssl/ /app/
 
 EXPOSE 9000
 
