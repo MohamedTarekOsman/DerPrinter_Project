@@ -3,6 +3,14 @@ const User = require("../../models/User");
 const jwt = require("jsonwebtoken");
 const bcrypt=require('bcryptjs')
 
+
+const generateToken = (userId) => {
+    return jwt.sign({ userId }, process.env.JWT_SECRET_KEY, {
+        expiresIn: process.env.JWT_EXPIRE_TIME,
+    });
+};
+
+
 const signUp = AsyncHandler(async (req, res) => {
     const { name, email, password, phone, gender, role, addresses } = req.body;
 
@@ -41,7 +49,42 @@ const signIn= AsyncHandler(async(req,res)=>{
     res.status(201).json({data:user,token});
 })
 
+const facebookLogin = AsyncHandler(async (req, res) => {
+    const { name, email, fbId } = req.body;
+
+    if (!fbId) {
+        return res.status(400).json({ message: 'Facebook ID is required.' });
+    }
+
+    // Check if user exists based on Facebook ID or email
+    let user = await User.findOne({ $or: [{ fbId }, { email }] });
+
+    if (user) {
+        // If user exists, update Facebook ID if missing and log in
+        if (!user.fbId) {
+            user.fbId = fbId;
+            await user.save();
+        }
+
+        // Generate a token for the user
+        const token = generateToken(user._id);
+        return res.status(200).json({ data: user, token });
+    }
+
+    // If user doesn't exist, create a new user
+    user = await User.create({
+        name,
+        email,
+        fbId,
+    });
+
+    // Generate a token for the new user
+    const token = generateToken(user._id);
+    res.status(201).json({ data: user, token });
+});
+
 module.exports = {
     signUp,
-    signIn
+    signIn,
+    facebookLogin
 };

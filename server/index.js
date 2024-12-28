@@ -5,9 +5,12 @@ const app= express();
 const fs=require('fs');
 const dotenv=require('dotenv');
 const mountRoutes=require('./routes');
+
+
 app.use(cors());
 app.options('*', cors());
 app.use(express.json());
+
 dotenv.config({path:"config.env"})
 mountRoutes(app)
 const dbconnection = require('./config/dataBase');
