@@ -1,5 +1,3 @@
-version: "3.8"
-
 services:
   backend:
     build:
@@ -7,6 +5,8 @@ services:
       dockerfile: Dockerfile
     container_name: backend
     hostname: backend
+    ports:
+      - "9000:9000"
     volumes:
       - backend_data:/data
     networks:
