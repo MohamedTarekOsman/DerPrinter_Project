@@ -15,7 +15,10 @@ const UserSchema = new mongoose.Schema({
     },
     password:{
         type:String,
-        required:[true,'password required'],
+        trim:true
+    },
+    fbId:{
+        type:String,
         trim:true
     },
     paymentOption:{
@@ -56,7 +59,6 @@ const UserSchema = new mongoose.Schema({
         type: Number,
         min: [1,'rating must be above 1'],
         max: [5,'rating must be below 5'],
-        default:1
     },
     ratingText:{
         type: String,
