@@ -4,7 +4,6 @@ import { GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
 import { REGISTER } from "../Redux/types/Types";
 import { useEffect } from "react";
-import { FacebookProvider, LoginButton } from 'react-facebook';
 import facebook from "../assets/images/facebook-2 1.png";
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -52,52 +51,71 @@ const SocialAuth = () => {
     }
   };
 
-  // Handling Facebook login response
-  const handleFacebookResponse = (response) => {
-    if (response.name && response.email && response.id) {
-      const { name, email, id: fbId } = response;
-      handleUserAuth(name, email, fbId);
-    } else {
-      console.error("Facebook signup Error: Invalid response", response);
-    }
+  // Facebook SDK login handler
+  const handleFacebookLogin = () => {
+    window.FB.login(
+      (response) => {
+        if (response.authResponse) {
+          window.FB.api("/me", { fields: "name,email" }, (userInfo) => {
+            if (userInfo.name && userInfo.email && response.authResponse.userID) {
+              handleUserAuth(userInfo.name, userInfo.email, response.authResponse.userID);
+            } else {
+              console.error("Facebook signup Error: Invalid user info", userInfo);
+            }
+          });
+        } else {
+          console.error("Facebook signup Error: Login cancelled or not authorized", response);
+        }
+      },
+      { scope: "public_profile,email" }
+    );
   };
+
+  useEffect(() => {
+    // Load Facebook SDK
+    window.fbAsyncInit = function () {
+      window.FB.init({
+        appId: "588447343923134",
+        cookie: true,
+        xfbml: true,
+        version: "v12.0",
+      });
+    };
+
+    // Load the Facebook SDK script
+    (function (d, s, id) {
+      const fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      const js = d.createElement(s);
+      js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    })(document, "script", "facebook-jssdk");
+  }, []);
 
   useEffect(() => {
     const observer = new MutationObserver(() => {
       const googleButton = document.querySelector(".nsm7Bb-HzV7m-LgbsSe-BPrWId");
       const container = document.querySelector(".nsm7Bb-HzV7m-LgbsSe  ");
-      const svg=document.querySelector(".LgbsSe-Bz112c")
-      const svgContainer=document.querySelector(".nsm7Bb-HzV7m-LgbsSe-Bz112c")
+      const svg = document.querySelector(".LgbsSe-Bz112c");
+      const svgContainer = document.querySelector(".nsm7Bb-HzV7m-LgbsSe-Bz112c");
       if (googleButton) {
         // Change the button text
         googleButton.textContent = "Mit Google anmelden";
-        
+
         // Add custom styles using classList
-        googleButton.classList.add(
-          "text-black",
-          "text-xl", 
-        );
-        svg.classList.add(
-          "w-6",
-          "h-5",
-        )
-        svgContainer.classList.add(
-          "my-5"
-        )
-        container.classList.add(
-          "flex",
-          "py-5",
-          "justify-center",
-          "font-bold"
-        )
+        googleButton.classList.add("text-black", "text-xl");
+        svg.classList.add("w-6", "h-5");
+        svgContainer.classList.add("my-5");
+        container.classList.add("flex", "py-5", "justify-center", "font-bold");
       }
     });
-  
+
     observer.observe(document.body, {
       childList: true,
       subtree: true,
     });
-  
+
     return () => observer.disconnect();
   }, []);
 
@@ -116,29 +134,14 @@ const SocialAuth = () => {
         />
       </div>
 
-      {/* Facebook Login Button using react-facebook */}
-      <FacebookProvider appId="588447343923134">
-        <LoginButton
-          scope="email"
-          onCompleted={handleFacebookResponse}
-          onError={() => console.error("Facebook login failed")}
-        >
-          {({ isProcessing, isLoggedIn, handleClick }) => (
-            <button
-              onClick={handleClick}
-              className="facebook-login flex items-center justify-center bg-[#3b5998] text-white text-sm py-2 px-4 w-full h-10 rounded-lg"
-              disabled={isProcessing || isLoggedIn}
-            >
-              <img
-                src={facebook}
-                alt="Facebook"
-                className="mr-2 h-6 w-6"
-              />
-              <span className="flex-1 text-center">Weiter mit Facebook</span>
-            </button>
-          )}
-        </LoginButton>
-      </FacebookProvider>
+      {/* Facebook Login Button */}
+      <button
+        onClick={handleFacebookLogin} // Use the SDK handler for login
+        className="facebook-login flex items-center justify-center bg-[#3b5998] text-white text-sm py-2 px-4 w-full h-10 rounded-lg"
+      >
+        <img src={facebook} alt="Facebook" className="mr-2 h-6 w-6" />
+        <span className="flex-1 text-center">Weiter mit Facebook</span>
+      </button>
     </div>
   );
 };
