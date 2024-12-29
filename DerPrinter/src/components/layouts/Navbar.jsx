@@ -8,6 +8,8 @@ import { MdOutlineMenu } from "react-icons/md";
 import logout from "../../assets/svg/log-out.svg";
 import Cookies from "universal-cookie";
 import { Link } from "react-router-dom";
+import SideMenu from "./SideMenu";
+
 const cookies = new Cookies();
 const user = cookies.get("user");
 
@@ -52,7 +54,7 @@ const Navbar = () => {
 
   return (
     <nav className="bg-black text-white">
-      <div className="lg:px-8 px-5 grid md:grid-cols-5 grid-cols-2 py-3 items-center gap-3">
+      <div className="lg:px-8 px-5 grid lg:grid-cols-5 grid-cols-2 py-3 items-center gap-3">
         {/* Logo Section */}
         <Link to="/" className="flex mb-4">
           <img
@@ -63,7 +65,7 @@ const Navbar = () => {
         </Link>
 
         {/* Links Section */}
-        <ul className="md:flex lg:justify-start justify-center lg:px-5 px-0 hidden xl:gap-11 lg:gap-10 md:gap-[26px] gap-6 md:col-span-3 col-span-1 ">
+        <ul className="lg:flex lg:justify-start justify-center lg:px-5 px-0 hidden xl:gap-9 lg:gap-7 md:gap-[20px] gap-4 md:col-span-3 col-span-1">
           <li>
             <Link to="/" className="txtNavbar">
               Startseite
@@ -75,11 +77,11 @@ const Navbar = () => {
             </Link>
           </li>
           {user?.role === "admin" && (
-          <li>
-            <Link to="/dashboard" className="txtNavbar">
-              Armaturenbrett
-            </Link>
-          </li>
+            <li>
+              <Link to="/dashboard" className="txtNavbar">
+                Armaturenbrett
+              </Link>
+            </li>
           )}
           <li>
             <Link to="/Address" className="txtNavbar">
@@ -87,10 +89,7 @@ const Navbar = () => {
             </Link>
           </li>
           <li>
-            <Link
-              to="/blogs"
-              className="txtNavbar"
-            >
+            <Link to="/blogs" className="txtNavbar">
               Blog
             </Link>
           </li>
@@ -102,7 +101,7 @@ const Navbar = () => {
         </ul>
 
         {/* Icons Section */}
-        <div ref={userCard} className="md:block hidden">
+        <div ref={userCard} className="lg:block hidden">
           <ul className="flex lg:justify-center justify-end items-end lg:gap-10 md:gap-8 gap-6 cursor-pointer">
             <li>
               <a href="/contact-us">
@@ -144,7 +143,7 @@ const Navbar = () => {
                     {user?.role === "admin" && (
                       <>
                         <li>
-                          <Link a="/dashBoard" className="txtNavbar">
+                          <Link to="/dashboard" className="liNav">
                             Armaturenbrett
                           </Link>
                         </li>
@@ -165,7 +164,6 @@ const Navbar = () => {
                       />
                       <p className="liNav">ausloggen</p>
                     </li>
-                    
                   </>
                 ) : (
                   <>
@@ -188,137 +186,18 @@ const Navbar = () => {
         </div>
 
         <div
-          className="flex justify-end md:hidden text-bgWhite"
+          className="flex justify-end lg:hidden text-bgWhite"
           onClick={() => setOpenMenu(true)}
         >
           <MdOutlineMenu className="text-3xl" />
         </div>
 
         {openMenu && (
-          <div
-            ref={menuRef}
-            className="absolute z-50 text-sm right-[20px] top-[80px] bg-white shadow-lg rounded-md max-w-[240px] w-full border-gray-300 border"
-          >
-            <ul className="flex flex-col gap-5 text-black text-center py-3">
-              <li>
-                <Link
-                  to="/"
-                  className="hover:underline sm:text-[18px] text-[15px]"
-                >
-                  Startseite
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="Address"
-                  className="hover:underline sm:text-[18px] text-[15px]"
-                >
-                  Unsere Vorteile
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="#"
-                  className="hover:underline sm:text-[18px] text-[15px]"
-                >
-                  Blog
-                </Link>
-              </li>
-            </ul>
-            {user ? (
-              <>
-                <ul className="flex flex-col text-center gap-5">
-                  <li>
-                    <Link
-                      to="/OrderOverview"
-                      className="hover:underline sm:text-[18px] text-[15px] text-black"
-                    >
-                      Bestellungen
-                    </Link>
-                  </li>
-                  {user?.role === "admin" && (
-                  <li>
-                    <Link
-                      to="/dashboard"
-                      className="hover:underline sm:text-[18px] text-[15px] text-black"
-                    >
-                      Armaturenbrett
-                    </Link>
-                  </li>
-                  )}
-                  <li>
-                    <Link to="/about-us" className="hover:underline sm:text-[18px] text-[15px] text-black">
-                      Über uns
-                    </Link>
-                  </li>
-                </ul>
-                <hr className="w-[90%] h-[2px] block bg-gray-200 mx-auto" />
-
-                <ul className="flex cursor-pointer justify-between items-center my-3 px-3">
-                  <li>
-                    <img
-                      src={telephone}
-                      alt="telephone"
-                      className="w-6 h-6 filter invert"
-                    />
-                  </li>
-                  <li className="relative group ">
-                    <img
-                      src={User}
-                      alt="User"
-                      onClick={() => setSidebarOpen(true)}
-                      className="w-6 h-6 filter invert"
-                    />
-                    {/* <span className=" text-gray-800 text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity">
-                      Profil
-                    </span> */}
-                  </li>
-                  <li>
-                    <img
-                      src={store}
-                      alt="user"
-                      className="w-6 h-6 filter invert"
-                    />
-                  </li>
-
-                </ul>
-
-                <hr className="w-[90%] h-[2px] block bg-gray-200 mx-auto" />
-                <div
-                  className="flex items-center justify-center gap-2 my-4 cursor-pointer"
-                  onClick={() => {
-                    cookies.remove("user");
-                    window.location.href = "/login";
-                  }}
-                >
-                  <img
-                    src={logout}
-                    alt="logout"
-                    className="filter invert w-6 h-6"
-                  />
-                  <p className="text-black sm:text-[18px] text-[15px]">
-                    ausloggen
-                  </p>
-                </div>
-              </>
-            ) : (
-              <ul className="flex flex-col gap-5 text-black text-center py-3">
-                <hr className="w-[90%] h-[2px] block bg-gray-200 mx-auto" />
-
-                <li className="liNav text-black">
-                  <Link to="/login">Anmelden</Link>
-                </li>
-                <li>
-                <Link to="/about-us" className="txtNavbar">
-                  Über uns
-                </Link>
-              </li>
-                <li className="liNav text-black">
-                  <Link to="/signup">Ein Konto erstellen</Link>
-                </li>
-              </ul>
-            )}
-          </div>
+          <SideMenu
+            menuRef={menuRef}
+            setSidebarOpen={setSidebarOpen}
+            setOpenMenu={setOpenMenu}
+          />
         )}
         {sidebarOpen && <ProfileSidebar setSidebarOpen={setSidebarOpen} />}
       </div>

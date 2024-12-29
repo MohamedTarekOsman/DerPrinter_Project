@@ -17,7 +17,7 @@ const ProfileSidebar = ({ setSidebarOpen }) => {
   const user = cookies.get("user");
 
   return (
-    <div className="fixed top-0 right-0 md:max-w-[440px] sm:max-w-[380px] max-w-[300px] w-full h-full bg-white text-black shadow-lg z-50 rounded-l-2xl">
+    <div className="fixed top-0 right-0 lg:max-w-[440px] w-full h-full bg-white text-black shadow-lg z-50 lg:rounded-l-2xl">
       <button
         onClick={() => setSidebarOpen(false)}
         className="absolute top-4 left-4 text-2xl font-bold"

@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 
-import google from "../assets/svg/google.svg";
-import facebook from "../assets/svg/facebook.svg";
-import apple from "../assets/svg/apple-logo.svg";
-import ImgButton from "./ui/ImgButton";
+// import google from "../assets/svg/google.svg";
+// import facebook from "../assets/svg/facebook.svg";
+// import ImgButton from "./ui/ImgButton";
+import SocialAuth from "./SocialAuth";
 
 const AuthForm = ({ children }) => {
   return (
@@ -19,11 +19,11 @@ const AuthForm = ({ children }) => {
         </p>
 
         {/* Social login buttons */}
-        <div className="space-y-7 w-full max-w-[500px] lg:mt-14 md:mt-12 sm:mt-10 mt-8">
+        {/* <div className="space-y-7 w-full max-w-[500px] lg:mt-14 md:mt-12 sm:mt-10 mt-8">
           <ImgButton src={google} alt="Google" text="Weiter mit Google" />
           <ImgButton src={facebook} alt="Facebook" text="Weiter mit Facebook" />
-          <ImgButton src={apple} alt="Apple" text="Weiter mit Apple" />
-        </div>
+        </div> */}
+        <SocialAuth />
 
         <hr className="w-full h-[2px] bg-black/65 block lg:my-12 md:my-10 sm:my-10 my-8" />
 

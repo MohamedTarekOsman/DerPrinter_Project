@@ -6,8 +6,8 @@ import { registerUser } from "../../Redux/actions/authAction";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Loader from "../../components/Loader";
-import male from "../../assets/images/male.png";
-import female from "../../assets/images/female.png";
+// import male from "../../assets/images/male.png";
+// import female from "../../assets/images/female.png";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import toast from "react-hot-toast";
 import Select from "react-select";
@@ -41,7 +41,7 @@ const Signup = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const avatar = gender === "male" ? { male } : { female };
+    // const gender = gender === "male" ? "male" : "female";
 
     const formData = new FormData();
     formData.append("email", email);
@@ -52,6 +52,7 @@ const Signup = () => {
     formData.append("postalCode", postalCode);
     formData.append("city", city);
     formData.append("phone", phone);
+    formData.append("gender", gender);
     dispatch(
       registerUser({
         email,
@@ -62,7 +63,7 @@ const Signup = () => {
         postalCode,
         phone,
         city,
-        avatar,
+        gender,
       })
     );
   };
@@ -86,7 +87,7 @@ const Signup = () => {
 
   return (
     <AuthForm>
-      {/* Email login form */}
+      {/* Email SignUp form */}
       <form
         onSubmit={handleSubmit}
         className="lg:mt-12 md:mt-10 mt-6 w-full max-w-2xl"

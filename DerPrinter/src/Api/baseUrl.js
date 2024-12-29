@@ -4,5 +4,5 @@ import axios from "axios";
 const baseUrl= axios.create({baseURL:"https://api.derprinter.softforte.site"})
 
 //prod
-// const baseUrl = axios.create({ baseURL: "https://backend:9000" });
+// const baseUrl = axios.create({ baseURL: "http://localhost:9000" });
 export default baseUrl;

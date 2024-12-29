@@ -21,15 +21,15 @@ const sslOptions = {
 };
 
 const port = process.env.PORT || 9000;
-const server = https
-  .createServer(sslOptions, app)
-  .listen(port, "0.0.0.0", () => {
-    console.log(`HTTPS Server is running on https://0.0.0.0:${port}`);
-  });
+// const server = https
+//   .createServer(sslOptions, app)
+//   .listen(port, "0.0.0.0", () => {
+//     console.log(`HTTPS Server is running on https://0.0.0.0:${port}`);
+//   });
 
-// const server=app.listen(port,() => {
-//     console.log(`Server is running on port ${port}`);
-// });
+const server=app.listen(port,() => {
+    console.log(`Server is running on port ${port}`);
+});
 
 //Handel Rejection outside of express
 process.on("unhandledRejection", (err) => {

@@ -39,6 +39,39 @@ export const registerUser = (formData) => async (dispatch) => {
     });
   }
 };
+export const registerUserFaceBook = (formData) => async (dispatch) => {
+  try {
+    const response = await useRegister("/api/v1/user/facebook", formData);
+
+    if (response && response.name && response.email) {
+      cookies.set("email", response.email,{
+        path: "/",
+        expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+        secure: true,
+      });
+      cookies.set("name", response.name, {
+        path: "/",
+        expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+        secure: true,
+      });
+
+      dispatch({
+        type: REGISTER,
+        payload: response.data,
+        loading: false,
+      });
+    } else {
+      throw new Error("Invalid response from server");
+    }
+  } catch (e) {
+    // التعامل مع الأخطاء
+    dispatch({
+      type: AUTH_ERROR,
+      payload: "Error " + e.message || e,
+      loading: false,
+    });
+  }
+};
 
 // login user
 export const loginUser = (email, password) => async (dispatch) => {
