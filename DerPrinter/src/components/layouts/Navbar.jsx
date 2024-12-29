@@ -20,6 +20,21 @@ const Navbar = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const userCard = useRef(null);
   const menuRef = useRef(null);
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
+
+  const handleTouchStart = (e) => {
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+  
+  const handleTouchEnd = (e) => {
+    setTouchEnd(e.changedTouches[0].clientX);
+    const swipeDistance = touchStart - touchEnd;
+  
+    if (Math.abs(swipeDistance) > 50) {
+      setopen(false); 
+    }
+  };
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -53,6 +68,13 @@ const Navbar = () => {
     };
   }, [openMenu]);
 
+  useEffect(() => {
+    document.body.classList.add("overflow-hidden");
+    return () => {
+      document.body.classList.remove("overflow-hidden");
+    };
+  }, []);
+
   return (
     <nav className="bg-black text-white">
       <div className="lg:px-8 px-5 grid md:grid-cols-5 grid-cols-2 py-3 items-center gap-3  my-auto">
@@ -61,14 +83,14 @@ const Navbar = () => {
             className="flex md:hidden text-bgWhite"
             onClick={() => setOpenMenu(true)}
           >
-            <MdOutlineMenu className="text-2xl" />
+            <MdOutlineMenu className="text-xl" />
           </div>
           {/* Logo Section */}
           <Link to="/" className="flex md:mb-6 mb-3">
             <img
               src={Logo}
               alt="Logo"
-              className="lg:w-[190px] sm:w-[160px] w-[120px] lg:h-[88px] md:h-[77px] h-[70px]"
+              className="lg:w-[190px] sm:w-[160px] w-[100px] lg:h-[88px] md:h-[77px] sm:h-[70px] h-[60px]"
             />
           </Link>
         </div>
@@ -117,7 +139,7 @@ const Navbar = () => {
                 <img
                   src={telephone}
                   alt="telephone"
-                  className="lg:w-8 w-[25px] lg:h-8 h-[25px]"
+                  className="lg:w-8 md:w-[25px] w-[20px] lg:h-8 md:h-[25px] h-[20px]"
                 />
               </a>
             </li>
@@ -126,7 +148,7 @@ const Navbar = () => {
                 src={User}
                 alt="User"
                 onClick={() => setopen(!open)}
-                className="lg:w-8 w-[25px] lg:h-8 h-[25px]"
+                className="lg:w-8 md:w-[25px] w-[20px] lg:h-8 md:h-[25px] h-[20px]"
               />
             </li>
             <li>
@@ -134,7 +156,7 @@ const Navbar = () => {
                 <img
                   src={store}
                   alt="user"
-                  className="lg:w-8 w-[25px] lg:h-8 h-[25px]"
+                  className="lg:w-8 md:w-[25px] w-[20px] lg:h-8 md:h-[25px] h-[20px]"
                 />
               </Link>
             </li>
@@ -149,7 +171,11 @@ const Navbar = () => {
               >
                 <IoMdClose />
               </button>
-              <div className="absolute flex flex-col md:items-center md:justify-center z-50 text-sm xl:right-[140px] lg:right-[120px] md:right-[75px] md:py-0 py-10 right-0 md:top-[100px] top-0 bg-white shadow-lg md:rounded-md md:max-w-[240px] w-full md:max-h-[185px] h-full border-gray-300 border">
+              <div
+                onTouchStart={handleTouchStart}
+                onTouchEnd={handleTouchEnd}
+                className="absolute flex flex-col md:items-center md:justify-center z-50 text-sm xl:right-[140px] lg:right-[120px] md:right-[75px] md:py-0 py-10 right-0 md:top-[100px] top-0 bg-white shadow-lg md:rounded-md md:max-w-[240px] w-full md:max-h-[185px] h-full border-gray-300 border"
+              >
                 <ul className="flex flex-col gap-5 text-black text-center py-4 cursor-pointer">
                   {user ? (
                     <>
@@ -187,13 +213,20 @@ const Navbar = () => {
                   ) : (
                     <>
                       <li className="liNav">
-                        <Link to="/login">Anmelden</Link>
+                        <Link onClick={() => setopen(false)} to="/signup">
+                          Ein Konto erstellen
+                        </Link>
                       </li>
                       <li className="liNav">
-                        <Link to="/signup">Ein Konto erstellen</Link>
+                        <Link onClick={() => setopen(false)} to="/login">
+                          Anmelden
+                        </Link>
                       </li>
+
                       <li className="liNav">
-                        <Link to="/about-us">Über uns</Link>
+                        <Link onClick={() => setopen(false)} to="/about-us">
+                          Über uns
+                        </Link>
                       </li>
                     </>
                   )}
