@@ -104,7 +104,7 @@ body {
   @apply font-bold xl:text-[26px] lg:text-[24px] md:text-[20px] sm:text-[18px] text-[16px] mb-4 text-white;
 }
 .txtNavbar {
-  @apply hover:underline xl:text-[16px] text-[12px];
+  @apply hover:underline xl:text-[18px] lg:text-[16px] text-[14px];
 }
 .liNav {
   @apply sm:text-[18px] text-[15px] hover:underline;
@@ -149,7 +149,6 @@ body {
 } */
 .facebook-login {
   color: black;
-  font-size: 22px;
   cursor: pointer;
-  @apply flex items-center justify-center w-full border border-gray-300 rounded-[10px] py-3 hover:bg-gray-100 bg-white;
+  @apply flex items-center justify-center md:text-[22px] text-[18px] w-full border border-gray-300 rounded-[10px] py-3 hover:bg-gray-100 bg-white;
 }

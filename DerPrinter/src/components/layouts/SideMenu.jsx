@@ -8,7 +8,7 @@ import { IoMdClose } from "react-icons/io";
 const cookies = new Cookies();
 const user = cookies.get("user");
 
-const SideMenu = ({ menuRef, setSidebarOpen, setOpenMenu }) => {
+const SideMenu = ({ menuRef, setOpenMenu }) => {
   return (
     <>
       <div
@@ -28,12 +28,12 @@ const SideMenu = ({ menuRef, setSidebarOpen, setOpenMenu }) => {
             </Link>
           </li>
 
-          <li
+          {/* <li
             onClick={() => setSidebarOpen(true)}
             className="hover:underline sm:text-[18px] text-[15px] cursor-pointer"
           >
             Profil
-          </li>
+          </li> */}
 
           <li>
             <Link
@@ -66,7 +66,7 @@ const SideMenu = ({ menuRef, setSidebarOpen, setOpenMenu }) => {
                   Bestellungen
                 </Link>
               </li>
-              {user?.role === "admin" && (
+              {/* {user?.role === "admin" && (
                 <li>
                   <Link
                     to="/dashboard"
@@ -76,7 +76,7 @@ const SideMenu = ({ menuRef, setSidebarOpen, setOpenMenu }) => {
                     Armaturenbrett
                   </Link>
                 </li>
-              )}
+              )} */}
               <li>
                 <Link
                   to="/about-us"

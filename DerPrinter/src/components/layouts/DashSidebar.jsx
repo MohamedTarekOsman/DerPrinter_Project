@@ -5,6 +5,7 @@ import Logo from "../../assets/images/Logo.png";
 import profile from "../../assets/images/profile.png";
 import dashboard from "../../assets/svg/dashboard-admin.svg";
 import packagee from "../../assets/svg/package.svg";
+import blogicon from "../../assets/images/blogicon.png";
 import logout from "../../assets/svg/log-out.svg";
 import Cookies from "universal-cookie";
 import { useDispatch, useSelector } from "react-redux";
@@ -66,7 +67,7 @@ const DashSidebar = ({ toggleSidebar, isOpen }) => {
               </p>
             </Link>
             <Link to={`/dashboard/blog`} className="flex items-center gap-3">
-              <img src={packagee} alt="packagee" className="" />
+              <img src={blogicon} alt="blogicon" className="w-10 h-10 text-white filter invert" />
               <p className="text-white md:text-[18px] text-[15px]">Blog</p>
             </Link>
 

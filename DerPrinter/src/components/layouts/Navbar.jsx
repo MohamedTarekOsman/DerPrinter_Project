@@ -9,6 +9,7 @@ import logout from "../../assets/svg/log-out.svg";
 import Cookies from "universal-cookie";
 import { Link } from "react-router-dom";
 import SideMenu from "./SideMenu";
+import { IoMdClose } from "react-icons/io";
 
 const cookies = new Cookies();
 const user = cookies.get("user");
@@ -54,18 +55,26 @@ const Navbar = () => {
 
   return (
     <nav className="bg-black text-white">
-      <div className="lg:px-8 px-5 grid lg:grid-cols-5 grid-cols-2 py-3 items-center gap-3">
-        {/* Logo Section */}
-        <Link to="/" className="flex mb-4">
-          <img
-            src={Logo}
-            alt="Logo"
-            className="md:w-[190px] sm:w-[160px] w-[120px] md:h-[88px]"
-          />
-        </Link>
+      <div className="lg:px-8 px-5 grid md:grid-cols-5 grid-cols-2 py-3 items-center gap-3  my-auto">
+        <div className="flex items-center gap-2">
+          <div
+            className="flex md:hidden text-bgWhite"
+            onClick={() => setOpenMenu(true)}
+          >
+            <MdOutlineMenu className="text-2xl" />
+          </div>
+          {/* Logo Section */}
+          <Link to="/" className="flex md:mb-6 mb-3">
+            <img
+              src={Logo}
+              alt="Logo"
+              className="lg:w-[190px] sm:w-[160px] w-[120px] lg:h-[88px] md:h-[77px] h-[70px]"
+            />
+          </Link>
+        </div>
 
         {/* Links Section */}
-        <ul className="lg:flex lg:justify-start justify-center lg:px-5 px-0 hidden xl:gap-9 lg:gap-7 md:gap-[20px] gap-4 md:col-span-3 col-span-1">
+        <ul className="md:flex lg:justify-start justify-center lg:px-5 px-0 hidden xl:gap-9 lg:gap-7 md:gap-[20px] gap-4 md:col-span-3 col-span-1">
           <li>
             <Link to="/" className="txtNavbar">
               Startseite
@@ -76,13 +85,13 @@ const Navbar = () => {
               Bestellungen
             </Link>
           </li>
-          {user?.role === "admin" && (
+          {/* {user?.role === "admin" && (
             <li>
               <Link to="/dashboard" className="txtNavbar">
                 Armaturenbrett
               </Link>
             </li>
-          )}
+          )} */}
           <li>
             <Link to="/Address" className="txtNavbar">
               Unsere Vorteile
@@ -101,14 +110,14 @@ const Navbar = () => {
         </ul>
 
         {/* Icons Section */}
-        <div ref={userCard} className="lg:block hidden">
-          <ul className="flex lg:justify-center justify-end items-end lg:gap-10 md:gap-8 gap-6 cursor-pointer">
+        <div ref={userCard} className="">
+          <ul className="flex lg:justify-center justify-end items-end lg:gap-10 gap-6 cursor-pointer">
             <li>
               <a href="/contact-us">
                 <img
                   src={telephone}
                   alt="telephone"
-                  className="lg:w-8 sm:w-7 w-6 lg:h-8 sm:h-7 h-6"
+                  className="lg:w-8 w-[25px] lg:h-8 h-[25px]"
                 />
               </a>
             </li>
@@ -117,7 +126,7 @@ const Navbar = () => {
                 src={User}
                 alt="User"
                 onClick={() => setopen(!open)}
-                className="lg:w-8 sm:w-7 w-6 lg:h-8 sm:h-7 h-6"
+                className="lg:w-8 w-[25px] lg:h-8 h-[25px]"
               />
             </li>
             <li>
@@ -125,7 +134,7 @@ const Navbar = () => {
                 <img
                   src={store}
                   alt="user"
-                  className="lg:w-8 sm:w-7 w-6 lg:h-8 sm:h-7 h-6"
+                  className="lg:w-8 w-[25px] lg:h-8 h-[25px]"
                 />
               </Link>
             </li>
@@ -133,72 +142,68 @@ const Navbar = () => {
 
           {/* mobile */}
           {open ? (
-            <div className="absolute z-50 text-sm xl:right-[140px] lg:right-[120px] md:right-[75px] sm:right-[60px] right-[55px] md:top-[100px] top-[80px] bg-white shadow-lg rounded-md max-w-[240px] w-full border-gray-300 border">
-              <ul className="flex flex-col gap-5 text-black text-center py-4 cursor-pointer">
-                {user ? (
-                  <>
-                    <li onClick={() => setSidebarOpen(true)} className="liNav">
-                      Profil
-                    </li>
-                    {user?.role === "admin" && (
-                      <>
-                        <li>
-                          <Link to="/dashboard" className="liNav">
-                            Armaturenbrett
-                          </Link>
-                        </li>
-                        <hr className="w-[90%] h-[3px] block bg-gray-300 mx-auto my-2" />
-                      </>
-                    )}
-                    <li
-                      className="flex items-center justify-center gap-2 "
-                      onClick={() => {
-                        cookies.remove("user");
-                        window.location.href = "/login";
-                      }}
-                    >
-                      <img
-                        src={logout}
-                        alt="logout"
-                        className="filter invert w-6 h-6"
-                      />
-                      <p className="liNav">ausloggen</p>
-                    </li>
-                  </>
-                ) : (
-                  <>
-                    <li className="liNav">
-                      <Link to="/login">Anmelden</Link>
-                    </li>
-                    <li className="liNav">
-                      <Link to="/signup">Ein Konto erstellen</Link>
-                    </li>
-                    <li>
-                      <Link to="/about-us" className="txtNavbar">
-                        Über uns
-                      </Link>
-                    </li>
-                  </>
-                )}
-              </ul>
-            </div>
+            <>
+              <button
+                onClick={() => setopen(false)}
+                className="absolute top-4 left-4 text-2xl font-bold text-black md:hidden block z-[55]"
+              >
+                <IoMdClose />
+              </button>
+              <div className="absolute flex flex-col md:items-center md:justify-center z-50 text-sm xl:right-[140px] lg:right-[120px] md:right-[75px] md:py-0 py-10 right-0 md:top-[100px] top-0 bg-white shadow-lg md:rounded-md md:max-w-[240px] w-full md:max-h-[185px] h-full border-gray-300 border">
+                <ul className="flex flex-col gap-5 text-black text-center py-4 cursor-pointer">
+                  {user ? (
+                    <>
+                      <li
+                        onClick={() => setSidebarOpen(true)}
+                        className="liNav"
+                      >
+                        Profil
+                      </li>
+                      {user?.role === "admin" && (
+                        <>
+                          <li>
+                            <Link to="/dashboard" className="liNav">
+                              Armaturenbrett
+                            </Link>
+                          </li>
+                          <hr className="w-[90%] h-[3px] block bg-gray-300 mx-auto my-2" />
+                        </>
+                      )}
+                      <li
+                        className="flex items-center justify-center gap-2 "
+                        onClick={() => {
+                          cookies.remove("user");
+                          window.location.href = "/login";
+                        }}
+                      >
+                        <img
+                          src={logout}
+                          alt="logout"
+                          className="filter invert w-6 h-6"
+                        />
+                        <p className="liNav">ausloggen</p>
+                      </li>
+                    </>
+                  ) : (
+                    <>
+                      <li className="liNav">
+                        <Link to="/login">Anmelden</Link>
+                      </li>
+                      <li className="liNav">
+                        <Link to="/signup">Ein Konto erstellen</Link>
+                      </li>
+                      <li className="liNav">
+                        <Link to="/about-us">Über uns</Link>
+                      </li>
+                    </>
+                  )}
+                </ul>
+              </div>
+            </>
           ) : null}
         </div>
 
-        <div
-          className="flex justify-end lg:hidden text-bgWhite"
-          onClick={() => setOpenMenu(true)}
-        >
-          <MdOutlineMenu className="text-3xl" />
-        </div>
-
-        {openMenu && (
-          <SideMenu
-            menuRef={menuRef}
-            setSidebarOpen={setSidebarOpen}
-            setOpenMenu={setOpenMenu}
-          />
-        )}
+        {openMenu && <SideMenu menuRef={menuRef} setOpenMenu={setOpenMenu} />}
         {sidebarOpen && <ProfileSidebar setSidebarOpen={setSidebarOpen} />}
       </div>
     </nav>
