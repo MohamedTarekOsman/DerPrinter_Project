@@ -4,7 +4,7 @@ import { GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
 import { REGISTER } from "../Redux/types/Types";
 import { useEffect } from "react";
-import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
+import { FacebookProvider, LoginButton } from 'react-facebook';
 import facebook from "../assets/images/facebook-2 1.png";
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -52,6 +52,7 @@ const SocialAuth = () => {
     }
   };
 
+  // Handling Facebook login response
   const handleFacebookResponse = (response) => {
     if (response.name && response.email && response.id) {
       const { name, email, id: fbId } = response;
@@ -99,7 +100,6 @@ const SocialAuth = () => {
   
     return () => observer.disconnect();
   }, []);
-  
 
   return (
     <div className="space-y-7 w-full max-w-[500px] lg:mt-14 md:mt-12 sm:mt-10 mt-8">
@@ -116,24 +116,29 @@ const SocialAuth = () => {
         />
       </div>
 
-      {/* Facebook Login Button */}
-      <FacebookLogin
-        appId="588447343923134"
-        autoLoad={false}
-        fields="name,email,picture"
-        callback={handleFacebookResponse}
-        render={({ onClick }) => (
-          <button onClick={onClick} className="facebook-login flex items-center justify-center bg-[#3b5998] text-white text-sm  py-2 px-4 w-full h-10 rounded-lg">
-            <img
-              src={facebook}
-              alt="Facebook"
-              className="mr-2 h-6 w-6"
-            />
-            <span className="flex-1 text-center">Weiter mit Facebook</span>
-          </button>
-
-        )}
-      />
+      {/* Facebook Login Button using react-facebook */}
+      <FacebookProvider appId="588447343923134">
+        <LoginButton
+          scope="email"
+          onCompleted={handleFacebookResponse}
+          onError={() => console.error("Facebook login failed")}
+        >
+          {({ isProcessing, isLoggedIn, handleClick }) => (
+            <button
+              onClick={handleClick}
+              className="facebook-login flex items-center justify-center bg-[#3b5998] text-white text-sm py-2 px-4 w-full h-10 rounded-lg"
+              disabled={isProcessing || isLoggedIn}
+            >
+              <img
+                src={facebook}
+                alt="Facebook"
+                className="mr-2 h-6 w-6"
+              />
+              <span className="flex-1 text-center">Weiter mit Facebook</span>
+            </button>
+          )}
+        </LoginButton>
+      </FacebookProvider>
     </div>
   );
 };
