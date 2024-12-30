@@ -34,8 +34,8 @@ const Cart = () => {
 
   const handleDeleteItem = async (item) => {
     try {
-      console.log(user._id)
-      console.log("Deleting item with ID:", item);
+      
+      ;
       toast.success("prdouct deleted successfully")
       await dispatch(deleteFromCart(user._id, {productId: item?.product?._id}));
       await dispatch(getUserById(user._id));

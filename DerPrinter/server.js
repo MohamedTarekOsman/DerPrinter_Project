@@ -39,7 +39,7 @@ app.post('/send-email', (req, res) => {
       console.error('Error sending email:', error);
       res.status(500).json({ success: false, message: 'Error sending email' });
     } else {
-      console.log('Email sent:', info.response);
+      ;
       res.status(200).json({ success: true, message: 'Email sent successfully' });
     }
   });
@@ -48,5 +48,5 @@ app.post('/send-email', (req, res) => {
 // تشغيل الخادم
 const PORT = 4000;
 app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+  ;
 });

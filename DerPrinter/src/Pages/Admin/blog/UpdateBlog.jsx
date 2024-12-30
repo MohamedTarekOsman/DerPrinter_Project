@@ -56,7 +56,7 @@ const UpdateBlog = () => {
     dispatch(getAllBlogs());
   }, [dispatch]);
 
-  console.log("object", allBlogs);
+  ;
 
   const handleSubmit = (e) => {
     e.preventDefault();

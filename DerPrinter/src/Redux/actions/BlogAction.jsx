@@ -55,7 +55,7 @@ export const getAllBlogs = () => async (dispatch) => {
     dispatch({ type: "LOADING_Blog", payload: true });
 
     const response = await useGetData(`/api/v1/blogs`);
-    // console.log(response, "API Response");
+    // ;
 
     dispatch({
       type: GET_ALL_BLOGS,

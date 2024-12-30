@@ -55,7 +55,7 @@ export const getAllSliders = () => async (dispatch) => {
     dispatch({ type: "LOADING_SLIDER", payload: true });
 
     const response = await useGetData(`/api/v1/homePage`);
-    // console.log(response, "API Response");
+    // ;
 
     dispatch({
       type: GET_ALL_SLIDERS,

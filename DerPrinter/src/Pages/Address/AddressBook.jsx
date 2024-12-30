@@ -33,7 +33,7 @@ const AddressBook = () => {
   }, [dispatch, user]);
 
   // useEffect(() => {
-  //   console.log(userRes)
+  //   
   // }, [userRes]);
 
   const handleInputChange = (e) => {

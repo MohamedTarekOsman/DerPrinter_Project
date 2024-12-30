@@ -78,7 +78,7 @@ const AdminSlider = () => {
     });
   };
 
-  // console.log(aboutSection, "AboutSection");
+  // ;
 
   if (loading) {
     return <Loader />;

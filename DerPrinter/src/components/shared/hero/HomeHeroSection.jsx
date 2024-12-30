@@ -9,7 +9,7 @@ import "swiper/css/effect-fade";
 import "./HomeHeroSection.css";
 
 function HomeHeroSection({ slidesData }) {
-  console.log("SliderData", slidesData);
+  ;
 
   return (
     <section className="hero-section">

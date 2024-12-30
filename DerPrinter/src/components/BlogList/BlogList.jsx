@@ -15,7 +15,7 @@ const BlogList = ({ title, id }) => {
       setProducts(filteredProducts);
 
       setLoading(false);
-      console.log("Filtered Blogs:", filteredProducts);
+      ;
     }
     loadHomeData();
   }, [id]); // إضافة `id` كاعتماد لإعادة تحميل البيانات عند تغييره

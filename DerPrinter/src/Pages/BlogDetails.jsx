@@ -15,9 +15,9 @@ const PlogDetails = () => {
 
     async function getBlog(){
       const data = await fetchSingleBlogProduct(`blogs/${id}`);
-      console.log("THis is Data:::", data)
+      
       setProduct(data);
-      console.log("THis is Our Product:", product)
+      
       setLoading(false);
     }
 

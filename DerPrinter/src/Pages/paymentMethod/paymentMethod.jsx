@@ -28,12 +28,12 @@ const PaymentMethod = () => {
       paymentOption:method
     }))
     // toast.success(`payment method : ${method}`)
-    console.log(userRes)
+    
   };
 
   const handleSelectedMethod = async () => {
     if (userRes.data) {
-      console.log(userRes.data)
+      
       const productNames = userRes.data.cart
         .map(item => item.product.name)
         .join(', ');
@@ -78,7 +78,7 @@ const PaymentMethod = () => {
   
         navigate('/OrderOverview');
       }catch(e){
-        console.log(e);
+        ;
         toast.error("Error in creating Order");
       }
  // Navigate to a confirmation page, for example

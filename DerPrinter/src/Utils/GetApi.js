@@ -33,7 +33,6 @@ export async function fetchData(link) {
       }
   
       const data = await response.json();
-      console.log()
       return data.data; // افترض أن البيانات موجودة في الحقل `data`
     } catch (error) {
       if (error.message.includes("404")) {
@@ -80,7 +79,6 @@ export async function fetchData(link) {
       }
   
       const data = await response.json();
-      console.log()
       return data; // افترض أن البيانات موجودة في الحقل `data`
     } catch (error) {
       if (error.message.includes("404")) {

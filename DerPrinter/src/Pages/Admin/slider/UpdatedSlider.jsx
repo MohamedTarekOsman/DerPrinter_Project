@@ -21,7 +21,7 @@ const UpdateSlider = () => {
   }, [dispatch]);
 
   useEffect(()=>{
-    console.log("object", product);
+    ;
   },[product])
 
   const [slidersData, setSlidersData] = useState([]);
@@ -45,7 +45,7 @@ const UpdateSlider = () => {
     if (allSliders.length > 0) {
       const slider = allSliders.find((item) => item._id === _id);
       if (slider) {
-        // console.log("Slider Data:", slider);
+        // ;
         const sliderEntries = Object.entries(slider).filter(([key]) =>
           key.startsWith("slider")
         );
@@ -75,7 +75,7 @@ const UpdateSlider = () => {
   const handleSliderChange = (index, field, value) => {
     const updatedSliders = [...slidersData];
     updatedSliders[index][field] = value;
-    console.log(value);
+    ;
     setSlidersData(updatedSliders);
   };
 
@@ -133,7 +133,7 @@ const UpdateSlider = () => {
     return <Loader />;
   }
 
-  // console.log("Slider Data:", allSliders);
+  // ;
 
   return (
     <div className="mt-7 w-full">

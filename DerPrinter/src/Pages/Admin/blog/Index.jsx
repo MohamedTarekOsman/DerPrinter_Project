@@ -17,7 +17,7 @@ const Index = () => {
     }
   };
 
-  console.log(allBlogs, "all");
+  ;
   return (
     <div className="mt-7 w-full">
       <h2 className="text-[30px] font-bold">Der Blog</h2>

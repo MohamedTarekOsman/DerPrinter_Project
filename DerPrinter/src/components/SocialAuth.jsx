@@ -22,7 +22,7 @@ const SocialAuth = () => {
         "https://api.derprinter.softforte.site/api/v1/user/facebook",
         { email, name, fbId }
       );
-      console.log(response, "res");
+      ;
 
       if (response.data.exists) {
         toast.success("Erfolgreich eingeloggt!");

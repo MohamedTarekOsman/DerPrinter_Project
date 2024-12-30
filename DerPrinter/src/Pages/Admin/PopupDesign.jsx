@@ -12,14 +12,14 @@ const PopupDesign = ({ closePopup, selectedImage }) => {
   const [imgStatus, setImgStatus] = useState(selectedImage.status);
 
   const handleStatusChange = async (newStatus) => {
-    console.log("if", selectedImage.orderId);
+    ;
     if (newStatus !== imgStatus) {
-      console.log("try", selectedImage.orderId);
+      ;
       try {
-        console.log("trrrry", selectedImage.orderId);
+        ;
         await dispatch(updateImageStatus(selectedImage.orderId, selectedImage._id, newStatus));
         await dispatch(getAllOrders(10000, 1));
-        console.log("toast", selectedImage.orderId);
+        ;
         toast.success("Status updated successfully!");
 
         setImgStatus(newStatus);
@@ -29,7 +29,7 @@ const PopupDesign = ({ closePopup, selectedImage }) => {
       }
     }
   };
-  console.log("orders", selectedImage.orderId);
+  ;
 
   return (
     <div

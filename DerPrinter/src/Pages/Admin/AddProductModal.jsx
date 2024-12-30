@@ -25,7 +25,7 @@ const AddProductModal = ({ isOpen, onClose, onSubmit, isLoading, selectedCategor
       formData.append("name", name);
       formData.append("image", file); // Attach file as "image"
       formData.append("categoryId",selectedCategoryId) 
-      console.log(file);
+      ;
       onSubmit(formData);
     } else {
       alert("Please provide both an image and a name.");

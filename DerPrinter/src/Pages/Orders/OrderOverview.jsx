@@ -23,7 +23,7 @@ const OrderOverview = () => {
 
   // Log all orders for debugging
   useEffect(() => {
-    console.log("All Orders:", allOrders);
+    ;
   }, [allOrders]);
 
   // Filter orders for the current user

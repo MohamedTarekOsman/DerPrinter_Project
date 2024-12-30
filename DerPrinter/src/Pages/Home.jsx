@@ -19,7 +19,7 @@ import { fetchHomeOrBlogsData } from "../Utils/GetApi";
         setHomeData(data);
         setSlidesData ([data[0]?.slider1,data[0]?.slider2,data[0]?.slider3,data[0]?.slider4])
         setLoading(false);
-        console.log("Our Home DATA",data)
+        
       }
   
       loadHomeData();

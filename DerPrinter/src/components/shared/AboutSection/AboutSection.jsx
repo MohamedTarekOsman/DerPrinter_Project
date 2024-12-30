@@ -3,7 +3,7 @@ import "./AboutSection.css";
 import aboutImage from '../../../assets/images/about-us.png'
 
 const AboutUs = ({data}) => {
-  console.log("ABOUT DATA::::",data)
+  
   // const {description1, description2, image, subtitle, title,} = data
   return (
     <div className="container about-us-container py-20s">

@@ -21,7 +21,7 @@ const ProductSlider = () => {
     }, []);
 
     useEffect(()=>{
-      console.log(products)
+      
     },[products])
 
   return (

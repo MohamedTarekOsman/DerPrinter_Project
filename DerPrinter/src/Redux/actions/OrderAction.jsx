@@ -59,7 +59,7 @@ export const updateImageStatus =
         `/api/v1/orders/${orderId}/images/${imageId}`,
         { status }
       );
-      console.log("lllll");
+      ;
       dispatch({
         type: UPDATE_ORDER_IMG,
         payload: response.data.order,

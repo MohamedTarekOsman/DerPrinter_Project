@@ -8,7 +8,7 @@ const ProductCard = ({ product,buttonText, link }) => {
   const { image, title, name, SalePercent, desc, properties } = product;
   const btnLink = link?(`/${link}/${product._id}`):(`/category/${product._id}`);
   let propsPro = properties!==undefined?properties:[];
-  console.log("Product Props:", propsPro)
+  
   return (
     <div className="prod-card bg-white shadow-md rounded-lg overflow-hidden text-center">
       <div className="relative">
