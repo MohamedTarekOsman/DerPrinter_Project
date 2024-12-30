@@ -4,9 +4,9 @@ import { GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
 import { REGISTER } from "../Redux/types/Types";
 import { useEffect } from "react";
-import FacebookLogin from "@greatsumini/react-facebook-login";
+// import FacebookLogin from "@greatsumini/react-facebook-login";
 // import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
-import facebook from "../assets/images/facebook-2 1.png";
+// import facebook from "../assets/images/facebook-2 1.png";
 import axios from "axios";
 import toast from "react-hot-toast";
 
@@ -54,14 +54,14 @@ const SocialAuth = () => {
     }
   };
 
-  const handleFacebookResponse = (response) => {
-    if (response.name && response.email && response.id) {
-      const { name, email, id: fbId } = response;
-      handleUserAuth(name, email, fbId);
-    } else {
-      console.error("Facebook signup Error: Invalid response", response);
-    }
-  };
+  // const handleFacebookResponse = (response) => {
+  //   if (response.name && response.email && response.id) {
+  //     const { name, email, id: fbId } = response;
+  //     handleUserAuth(name, email, fbId);
+  //   } else {
+  //     console.error("Facebook signup Error: Invalid response", response);
+  //   }
+  // };
 
   useEffect(() => {
     const observer = new MutationObserver(() => {
@@ -121,7 +121,7 @@ const SocialAuth = () => {
       </div>
 
       {/* Facebook Login Button */}
-      <FacebookLogin
+      {/* <FacebookLogin
         // appId="944645997618910" // mo
         appId="589691103806515" // server
         // appId="588447343923134" // local
@@ -141,7 +141,7 @@ const SocialAuth = () => {
             <span className="text-center">Weiter mit Facebook</span>
           </button>
         )}
-      />
+      /> */}
     </div>
   );
 };
