@@ -69,6 +69,7 @@ const SocialAuth = () => {
       const googleButton = document.querySelector(".nsm7Bb-HzV7m-LgbsSe-BPrWId");
       if (googleButton) {
         googleButton.classList.add("custom-google-button");
+        googleButton.innerHTML("Weiter mit Google");
       }
     });
 
