@@ -18,8 +18,8 @@ function HomeHeroSection({ slidesData }) {
           slidesPerView={1}
           speed={1000}
           loop={true}
-          modules={[EffectFade, Autoplay, Pagination]}
-          autoplay={{ delay: 9000, disableOnInteraction: false }}
+          modules={[EffectFade, Pagination]}
+          // autoplay={{ delay: 9000, disableOnInteraction: false }}
           pagination={{ clickable: true }}
           className="hero-swiper"
         >

@@ -152,3 +152,7 @@ body {
   cursor: pointer;
   @apply flex items-center justify-center md:text-[22px] text-[18px] w-full border border-gray-300 rounded-[10px] py-3 hover:bg-gray-100 bg-white;
 }
+.no-scroll {
+  overflow: hidden;
+  height: 100vh;
+}

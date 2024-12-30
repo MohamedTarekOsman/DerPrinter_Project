@@ -64,45 +64,47 @@ const SocialAuth = () => {
 
   useEffect(() => {
     const observer = new MutationObserver(() => {
-      const googleButton = document.querySelector(
-        ".nsm7Bb-HzV7m-LgbsSe-BPrWId"
-      );
-      const container = document.querySelector(
-        ".nsm7Bb-HzV7m-LgbsSe-bN97Pc-sM5MNb"
-      );
-      const img = document.querySelector(".nsm7Bb-HzV7m-LgbsSe-Bz112c");
-
-      if (googleButton) {
-        // Change the button text
-        googleButton.textContent = "Mit Google anmelden";
-
-        // Add custom styles using classList
-        googleButton.classList.add(
-          "text-black",
-          "md:text-2xl",
-          "text-[18px]",
-          "font-extrabold"
+      setTimeout(() => {
+        const googleButton = document.querySelector(
+          ".nsm7Bb-HzV7m-LgbsSe-BPrWId"
         );
-        container.classList.add(
-          "rounded-lg",
-          "flex",
-          "justify-center",
-          "gap-2"
+        const container = document.querySelector(
+          ".nsm7Bb-HzV7m-LgbsSe-bN97Pc-sM5MNb"
         );
-        container.style.width = "auto";
-        img.style.width = "23px";
-        img.style.height = "23px";
-        // container.style.maxWidth = "unset";
-      }
+        const img = document.querySelector(".nsm7Bb-HzV7m-LgbsSe-Bz112c");
+  
+        if (googleButton) {
+          // Change the button text
+          googleButton.textContent = "Mit Google anmelden";
+  
+          // Add custom styles using classList
+          googleButton.classList.add(
+            "text-black",
+            "md:text-2xl",
+            "text-[18px]",
+            "font-extrabold"
+          );
+          container.classList.add(
+            "rounded-lg",
+            "flex",
+            "justify-center",
+            "gap-2"
+          );
+          container.style.width = "auto";
+          img.style.width = "23px";
+          img.style.height = "23px";
+        }
+      }, 100); // Small delay
     });
-
+  
     observer.observe(document.body, {
       childList: true,
       subtree: true,
     });
-
+  
     return () => observer.disconnect();
   }, []);
+  
 
   return (
     <div className="space-y-7 w-full max-w-[500px] lg:mt-14 md:mt-12 sm:mt-10 mt-8">
@@ -135,7 +137,7 @@ const SocialAuth = () => {
               alt="Facebook"
               className="mr-2 md:h-7 h-6 md:w-7 w-6"
             />
-            Weiter mit Facebook
+            <span className="text-center">Weiter mit Facebook</span>
           </button>
         )}
       />

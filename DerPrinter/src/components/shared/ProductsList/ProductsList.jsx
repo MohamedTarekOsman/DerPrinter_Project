@@ -16,7 +16,7 @@ const ProductList = ({ categoryProducts, title, subTitle }) => {
   }, []);
 
   return (
-    <div className="bg-gray-100 py-20">
+    <div className="bg-gray-100 py-5" id="Products">
       <div className="tex text-center prod-list-title">
         <h2>{title}</h2>
         <p>{subTitle}</p>

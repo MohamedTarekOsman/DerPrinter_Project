@@ -39,6 +39,11 @@
         display: none !important;
     }
 }
+.category-hero{
+    background-image: none !important;
+    background-color: black !important;
+    min-height: 80vh !important;
+}
 @media (max-width:768px) {
     .landing-hero .flex-1:first-child{
         width: 100% !important;
@@ -47,13 +52,11 @@
     }
     .category-hero{
         flex-direction: column !important;
+        gap: 20px;
+        min-height: fit-content !important;
     }
 }
-.category-hero{
-    background-image: none !important;
-    background-color: black !important;
-    min-height: 80vh !important;
-}
+
 
 .custom-hero h2{
     font-size: 40px;

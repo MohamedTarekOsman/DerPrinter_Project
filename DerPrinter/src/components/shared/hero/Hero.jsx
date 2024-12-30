@@ -20,7 +20,7 @@ const Hero = ({ data, className = "" }) => {
           data.prop3?(  <div className="category-prop flex items-start"><img src={check} alt="check Icon"/><p className="text-lg mb-6">{data.prop3}</p></div>):null
         }
       
-        <CustomButton className={"hero-btn"} text={data.buttonText || "Erste Schritte"} onClick={data.onButtonClick} />
+        {/* <CustomButton className={"hero-btn"} text={data.buttonText || "Erste Schritte"} onClick={data.onButtonClick} /> */}
       </div>
 
       {/* Right Section: Image */}

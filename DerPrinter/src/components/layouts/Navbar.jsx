@@ -26,13 +26,13 @@ const Navbar = () => {
   const handleTouchStart = (e) => {
     setTouchStart(e.targetTouches[0].clientX);
   };
-  
+
   const handleTouchEnd = (e) => {
     setTouchEnd(e.changedTouches[0].clientX);
     const swipeDistance = touchStart - touchEnd;
-  
+
     if (Math.abs(swipeDistance) > 50) {
-      setopen(false); 
+      setopen(false);
     }
   };
 
@@ -69,11 +69,18 @@ const Navbar = () => {
   }, [openMenu]);
 
   useEffect(() => {
-    document.body.classList.add("overflow-hidden");
+    const body = document.body;
+
+    if (open) {
+      body.classList.add("no-scroll");
+    } else {
+      body.classList.remove("no-scroll");
+    }
+
     return () => {
-      document.body.classList.remove("overflow-hidden");
+      body.classList.remove("no-scroll");
     };
-  }, []);
+  }, [open]);
 
   return (
     <nav className="bg-black text-white">
@@ -167,14 +174,14 @@ const Navbar = () => {
             <>
               <button
                 onClick={() => setopen(false)}
-                className="absolute top-4 left-4 text-2xl font-bold text-black md:hidden block z-[55]"
+                className="fixed top-4 left-4 text-2xl font-bold text-black md:hidden block z-[55]"
               >
                 <IoMdClose />
               </button>
               <div
                 onTouchStart={handleTouchStart}
                 onTouchEnd={handleTouchEnd}
-                className="absolute flex flex-col md:items-center md:justify-center z-50 text-sm xl:right-[140px] lg:right-[120px] md:right-[75px] md:py-0 py-10 right-0 md:top-[100px] top-0 bg-white shadow-lg md:rounded-md md:max-w-[240px] w-full md:max-h-[185px] h-full border-gray-300 border"
+                className="fixed h-screen flex flex-col md:items-center md:justify-center z-50 text-sm xl:right-[140px] lg:right-[120px] md:right-[75px] md:py-0 py-10 right-0 md:top-[100px] top-0 bg-white shadow-lg md:rounded-md md:max-w-[240px] w-full md:max-h-[185px] border-gray-300 border"
               >
                 <ul className="flex flex-col gap-5 text-black text-center py-4 cursor-pointer">
                   {user ? (

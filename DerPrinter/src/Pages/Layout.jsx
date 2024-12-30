@@ -1,18 +1,22 @@
 import { Outlet, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 import Navbar from "../components/layouts/Navbar";
 import Footer from "../components/layouts/Footer";
 
 const RootLayout = () => {
-  const location = useLocation().pathname;
-  const isDash = location.split("/").find((e) => e === "dashboard");
+  const location = useLocation();
+  const isDash = location.pathname.includes("dashboard");
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]); 
   return (
     <div className="flex flex-col w-full h-screen">
-      {isDash == "dashboard" ? null : <Navbar />}
+      {!isDash && <Navbar />}
       <div className="flex-1">
         <Outlet />
       </div>
-      {isDash == "dashboard" ? null : <Footer />}
+      {!isDash && <Footer />}
     </div>
   );
 };
