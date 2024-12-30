@@ -64,61 +64,37 @@ const SocialAuth = () => {
   // };
 
   useEffect(() => {
+    // Wait for Google button to load and apply styles after it's rendered
     const observer = new MutationObserver(() => {
-      setTimeout(() => {
-        const googleButton = document.querySelector(
-          ".nsm7Bb-HzV7m-LgbsSe-BPrWId"
-        );
-        const container = document.querySelector(
-          ".nsm7Bb-HzV7m-LgbsSe-bN97Pc-sM5MNb"
-        );
-        const img = document.querySelector(".nsm7Bb-HzV7m-LgbsSe-Bz112c");
-
-        if (googleButton) {
-          // Change the button text
-          googleButton.textContent = "Mit Google anmelden";
-
-          // Add custom styles using classList
-          googleButton.classList.add(
-            "text-black",
-            "md:text-2xl",
-            "text-[18px]",
-            "font-extrabold"
-          );
-          container.classList.add(
-            "rounded-lg",
-            "flex",
-            "justify-center",
-            "gap-2"
-          );
-          container.style.width = "auto";
-          img.style.width = "23px";
-          img.style.height = "23px";
-        }
-      }, 100); // Small delay
+      const googleButton = document.querySelector(".nsm7Bb-HzV7m-LgbsSe-BPrWId");
+      if (googleButton) {
+        googleButton.classList.add("custom-google-button");
+      }
     });
 
+    // Observe changes in the body for Google button
     observer.observe(document.body, {
       childList: true,
       subtree: true,
     });
+
     return () => observer.disconnect();
   }, []);
 
   return (
     <div className="space-y-7 w-full max-w-[500px] lg:mt-14 md:mt-12 sm:mt-10 mt-8">
       {/* Google Login Button Styled */}
-      <div className="google-login-wrapper">
-        <GoogleLogin
-          onSuccess={(credentialResponse) => {
-            const decode = jwtDecode(credentialResponse.credential);
-            handleGoogleResponse(decode);
-          }}
-          onError={() => {
-            console.error("Login Failed");
-          }}
-        />
-      </div>
+      <div className="google-login-wrapper flex justify-center">
+      <GoogleLogin
+        onSuccess={(credentialResponse) => {
+          const decode = jwtDecode(credentialResponse.credential);
+          handleGoogleResponse(decode);
+        }}
+        onError={() => {
+          console.error("Login Failed");
+        }}
+      />
+    </div>
 
       {/* Facebook Login Button */}
       {/* <FacebookLogin
