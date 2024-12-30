@@ -4,7 +4,7 @@ import { GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
 import { REGISTER } from "../Redux/types/Types";
 import { useEffect } from "react";
-import FacebookLogin from '@greatsumini/react-facebook-login';
+import FacebookLogin from "@greatsumini/react-facebook-login";
 // import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
 import facebook from "../assets/images/facebook-2 1.png";
 import axios from "axios";
@@ -15,7 +15,6 @@ const cookies = new Cookies();
 const SocialAuth = () => {
   const dispatch = useDispatch();
 
-  // Function to handle authentication
   const handleUserAuth = async (name, email, fbId = null) => {
     try {
       const response = await axios.post(
@@ -37,6 +36,8 @@ const SocialAuth = () => {
       });
 
       dispatch({ type: REGISTER, payload: email });
+
+      // window.location.href = "/";
     } catch (error) {
       toast.error("Es gab einen Fehler bei der Verbindung mit dem Server.");
       console.error("Error during user authentication:", error);
@@ -72,11 +73,11 @@ const SocialAuth = () => {
           ".nsm7Bb-HzV7m-LgbsSe-bN97Pc-sM5MNb"
         );
         const img = document.querySelector(".nsm7Bb-HzV7m-LgbsSe-Bz112c");
-  
+
         if (googleButton) {
           // Change the button text
           googleButton.textContent = "Mit Google anmelden";
-  
+
           // Add custom styles using classList
           googleButton.classList.add(
             "text-black",
@@ -96,15 +97,13 @@ const SocialAuth = () => {
         }
       }, 100); // Small delay
     });
-  
+
     observer.observe(document.body, {
       childList: true,
       subtree: true,
     });
-  
     return () => observer.disconnect();
   }, []);
-  
 
   return (
     <div className="space-y-7 w-full max-w-[500px] lg:mt-14 md:mt-12 sm:mt-10 mt-8">
@@ -123,7 +122,9 @@ const SocialAuth = () => {
 
       {/* Facebook Login Button */}
       <FacebookLogin
-        appId="944645997618910"
+        // appId="944645997618910" // mo
+        appId="589691103806515" // server
+        // appId="588447343923134" // local
         autoLoad={false}
         fields="name,email,picture"
         callback={handleFacebookResponse}
