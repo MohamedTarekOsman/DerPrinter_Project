@@ -5,7 +5,7 @@ import check from '../../../assets/svg/check-mark.svg';
 
 const Hero = ({ data, className = "" }) => {
   return (
-    <div className={`flex items-center justify-center text-white p-8 ${className} custom-hero`}>
+    <div className={`flex items-center justify-center text-white p-8 ${className} cat-hero custom-hero`}>
       {/* Left Section: Text Content */}
       <div className="flex-1">
         <h2 className="text-3xl font-bold mb-4">{data.headLine}</h2>

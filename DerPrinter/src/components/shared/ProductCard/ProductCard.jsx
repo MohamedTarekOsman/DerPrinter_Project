@@ -13,7 +13,7 @@ const ProductCard = ({ product,buttonText, link }) => {
     <div className="prod-card bg-white shadow-md rounded-lg overflow-hidden text-center">
       <div className="relative">
         <img
-          src={image}
+          src={image?image:""}
           alt={title}
           className="w-full h-48 object-cover"
         />

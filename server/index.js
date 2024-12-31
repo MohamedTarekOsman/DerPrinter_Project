@@ -6,7 +6,18 @@ const fs = require("fs");
 const dotenv = require("dotenv");
 const mountRoutes = require("./routes");
 
-app.use(cors());
+const allowedDomain = "https://derprinter.softforte.site";
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      if (origin === allowedDomain || !origin) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+  })
+);
 app.options("*", cors());
 app.use(express.json());
 

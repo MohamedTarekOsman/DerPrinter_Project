@@ -3,13 +3,17 @@
   background-position: 50% 85%;
   background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.907), rgba(0, 0, 0, 0.841)), url("../../../assets/images/Bannerschilder.jpg");
   width: 100%;
-  min-height: 100vh;
+  min-height: fit-content !important;
+}
+.swiper-wrpper{
+  height: fit-content !important;
 }
 
 .hero-swiper {
   width: 100%;
+  height: fit-content !important;
   gap: 24px;
-  padding-bottom: 100px !important;
+  padding-bottom: 50px !important;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -26,7 +30,6 @@
     flex-direction: row; 
   }
   .hero-section .container{
-    min-height: 100vh !important;
     display: flex;
     align-items: center !important;
     justify-content: center;
@@ -43,20 +46,14 @@
 }
 
 .headImg {
-  height: 500px;
-  max-width: 100%;
-  border-radius: 50px !important;
+  max-height: 500px;
+  max-width: 48vw;
   overflow: hidden;
 }
-
 .headImg img {
-  height: 100%;
-  aspect-ratio: 1/1;
-  padding: 20px;
-  border-radius: 50px !important;
+  max-width: 100% !important;
+  overflow: hidden;
 }
-
-
 
 .hero-description {
   display: flex;
@@ -114,11 +111,10 @@
 @media (max-width: 576px) {
   .hero-description{
     gap: 10px !important;
+    padding: 0px 10px ;
+
   }
-  .hero-description h1 {
-    font-size: 28px !important;
-    line-height: 44px;
-  }
+
   .hero-description p {
     font-size: 14px;
     line-height: 22px;
@@ -146,20 +142,24 @@
     gap: 0px !important;
   }
   .headImg{
-    height: fit-content !important;
-    height: 220px !important;
-    width: fit-content;
+    max-height: 200px !important;
+    max-width: 100% !important;
+    width: 100%;
     padding: 0px !important;
   }
   .headImg img{
-    margin: 0px !important;
-    padding: 0px !important;
+    width: 100%;
   }
   .hero-swiper{
     padding-bottom: 40px !important;
   }
   .hero-section{
     min-height: fit-content !important;
+  }
+  .slider-title{
+    font-size: 21px !important;
+    line-height: 20px !important;
+    margin-top: 20px !important;
   }
 }
 

@@ -38,7 +38,7 @@ function HomeHeroSection({ slidesData }) {
                   </div>
                   <div className="col-md-6 p-0 hero-txt">
                     <div className="hero-description">
-                      <h1>{slide.title}</h1>
+                      <h1 className="slider-title">{slide.title}</h1>
                       <p>{slide.description}</p>
                       <div className="links">
                         {slide.link && (

@@ -22,6 +22,7 @@ const SocialAuth = () => {
         { email, name, fbId }
       );
       ;
+      ;
 
       if (response.data.exists) {
         toast.success("Erfolgreich eingeloggt!");
@@ -36,6 +37,8 @@ const SocialAuth = () => {
       });
 
       dispatch({ type: REGISTER, payload: email });
+
+      // window.location.href = "/";
 
       // window.location.href = "/";
     } catch (error) {
@@ -110,11 +113,17 @@ const SocialAuth = () => {
             onClick={onClick}
             className="facebook-login flex items-center justify-center py-2 px-4 rounded-lg w-full h-12 "
           >
+          <button
+            onClick={onClick}
+            className="facebook-login flex items-center justify-center py-2 px-4 rounded-lg w-full h-12 "
+          >
             <img
               src={facebook}
               alt="Facebook"
               className="mr-2 md:h-7 h-6 md:w-7 w-6"
+              className="mr-2 md:h-7 h-6 md:w-7 w-6"
             />
+            <span className="text-center">Weiter mit Facebook</span>
             <span className="text-center">Weiter mit Facebook</span>
           </button>
         )}

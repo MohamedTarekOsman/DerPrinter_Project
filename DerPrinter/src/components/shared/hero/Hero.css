@@ -55,6 +55,16 @@
         gap: 20px;
         min-height: fit-content !important;
     }
+    .cat-hero h2{
+        font-size: 17px !important;
+        line-height: 17px !important;
+        margin-bottom: 15px !important;
+    }
+    .cat-hero p{
+        font-size: 12px !important;
+        margin-bottom: 12px !important;
+        line-height: 16px !important;
+    }
 }
 
 

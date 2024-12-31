@@ -1,4 +1,6 @@
-import Logo from "../../assets/images/Logo.png";
+// import Logo from "../../assets/images/Logo.png";
+import Logo from "../../assets/images/Derprinter.jpg";
+// import Logo from "../../assets/svg/Logo.svg";
 import telephone from "../../assets/svg/telephone.svg";
 import User from "../../assets/svg/user.svg";
 import store from "../../assets/svg/grocery-store-2 1.svg";
@@ -72,16 +74,16 @@ const Navbar = () => {
 
   return (
     <nav className="bg-black text-white">
-      <div className="lg:px-8 px-5 grid md:grid-cols-5 grid-cols-2 py-3 items-center gap-3  my-auto">
+      <div className="lg:px-8 px-5 py-3 flex items-center justify-between gap-3">
         <div className="flex items-center gap-2">
           <div
-            className="flex md:hidden text-bgWhite"
+            className="flex md:hidden text-bgWhite my-auto"
             onClick={() => setOpenMenu(true)}
           >
             <MdOutlineMenu className="text-xl" />
           </div>
           {/* Logo Section */}
-          <Link to="/" className="flex md:mb-6 mb-3">
+          <Link to="/" className="flex mb-[-6px]">
             <img
               src={Logo}
               alt="Logo"
@@ -91,29 +93,29 @@ const Navbar = () => {
         </div>
 
         {/* Links Section */}
-        <ul className="md:flex lg:justify-start justify-center lg:px-5 px-0 hidden xl:gap-9 lg:gap-7 md:gap-[20px] gap-4 md:col-span-3 col-span-1">
+        <ul className="md:flex lg:justify-start justify-center lg:px-5 px-0 hidden xl:gap-9 lg:gap-7 md:gap-[16px] gap-4">
           <li>
             <Link to="/" className="txtNavbar">
               Startseite
             </Link>
           </li>
-          <li>
-            <Link to="/OrderOverview" className="txtNavbar">
-              Bestellungen
-            </Link>
-          </li>
-          {/* {user?.role === "admin" && (
-            <li>
-              <Link to="/dashboard" className="txtNavbar">
-                Armaturenbrett
-              </Link>
-            </li>
-          )} */}
-          <li>
-            <Link to="/Address" className="txtNavbar">
-              Unsere Vorteile
-            </Link>
-          </li>
+          {user ? (
+            <>
+              <li>
+                <Link to="/OrderOverview" className="txtNavbar">
+                  Bestellungen
+                </Link>
+              </li>
+
+              <li>
+                <Link to="/Address" className="txtNavbar">
+                  Adresse
+                </Link>
+              </li>
+            </>
+          ) : (
+            ""
+          )}
           <li>
             <Link to="/blogs" className="txtNavbar">
               Blog
@@ -128,7 +130,7 @@ const Navbar = () => {
 
         {/* Icons Section */}
         <div ref={userCard} className="">
-          <ul className="flex lg:justify-center justify-end items-end lg:gap-10 gap-6 cursor-pointer">
+          <ul className="flex lg:justify-center justify-end items-end lg:gap-10 gap-[22px] cursor-pointer">
             <li>
               <a href="/contact-us">
                 <img

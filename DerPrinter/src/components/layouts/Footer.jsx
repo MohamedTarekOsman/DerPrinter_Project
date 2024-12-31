@@ -1,4 +1,5 @@
-import Logo from "../../assets/images/Logo.png";
+// import Logo from "../../assets/images/Logo.png";
+import Logo from "../../assets/images/Derprinter.jpg";
 import gmail from "../../assets/svg/gmail.svg";
 import telephone from "../../assets/svg/telephone.svg";
 import paypal from "../../assets/svg/paypal-2 1.svg";
@@ -80,23 +81,16 @@ const Footer = () => {
       <div className="bg-bgWhite px-5 w-full md:py-10 py-6 my-auto">
         <div className="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 lg:gap-0 sm:gap-7 gap-4">
           <div>
-            <Link to='/AGB'>
-            <span>
-            AGB , &nbsp;&nbsp;
-          </span>
-          </Link>
-          <Link to='/Datenschutz'>
-            <span>
-            Datenschutz , &nbsp;&nbsp;
-          </span>
-          </Link>
-          <Link to='/Impressum'>
-            <span>
-            Impressum
-          </span>
-          </Link>
+            <Link to="/AGB">
+              <span>AGB , &nbsp;&nbsp;</span>
+            </Link>
+            <Link to="/Datenschutz">
+              <span>Datenschutz , &nbsp;&nbsp;</span>
+            </Link>
+            <Link to="/Impressum">
+              <span>Impressum</span>
+            </Link>
           </div>
-          
 
           <ul className="flex md:gap-1 gap-4 lg:justify-center sm:justify-end items-center">
             <li>
@@ -112,7 +106,11 @@ const Footer = () => {
 
           <div className="flex mx-auto items-center lg:justify-around justify-between w-full">
             <div className="flex gap-3">
-              <a href="https://www.facebook.com/profile.php?id=61570682215802&mibextid=ZbWKwL" className="block" target="_blank">
+              <a
+                href="https://www.facebook.com/profile.php?id=61570682215802&mibextid=ZbWKwL"
+                className="block"
+                target="_blank"
+              >
                 <img src={facebook} alt="" />
               </a>
               <a href="#" className="block " target="_blank">

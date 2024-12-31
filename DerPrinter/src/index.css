@@ -156,6 +156,7 @@ body {
   overflow: hidden;
   height: 100vh;
 }
+
 .custom-google-button {
   /* Custom styles for the Google login button */
   text-align: center;

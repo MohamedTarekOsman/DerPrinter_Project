@@ -13,13 +13,13 @@ const SideMenu = ({ menuRef, setOpenMenu }) => {
   const [startX, setStartX] = useState(0);
 
   const handleTouchStart = (e) => {
-    setStartX(e.touches[0].clientX); 
+    setStartX(e.touches[0].clientX);
   };
 
   const handleTouchEnd = (e) => {
-    const endX = e.changedTouches[0].clientX; 
+    const endX = e.changedTouches[0].clientX;
     if (startX > endX + 50 || startX < endX - 50) {
-      setOpenMenu(false); 
+      setOpenMenu(false);
     }
   };
 
@@ -50,18 +50,30 @@ const SideMenu = ({ menuRef, setOpenMenu }) => {
       </button>
       <ul className="flex flex-col gap-5 text-black text-center py-3">
         <li>
-          <Link onClick={() => setOpenMenu(false)} to="/" className="hover:underline sm:text-[18px] text-[15px]">
+          <Link
+            onClick={() => setOpenMenu(false)}
+            to="/"
+            className="hover:underline sm:text-[18px] text-[15px]"
+          >
             Startseite
           </Link>
         </li>
         <li>
-          <Link to="Address" onClick={() => setOpenMenu(false)} className="hover:underline sm:text-[18px] text-[15px]">
-            Unsere Vorteile
+          <Link
+            to="/blogs"
+            onClick={() => setOpenMenu(false)}
+            className="hover:underline sm:text-[18px] text-[15px]"
+          >
+            Blog
           </Link>
         </li>
         <li>
-          <Link to="/blogs" onClick={() => setOpenMenu(false)} className="hover:underline sm:text-[18px] text-[15px]">
-            Blog
+          <Link
+            onClick={() => setOpenMenu(false)}
+            to="/about-us"
+            className="hover:underline sm:text-[18px] text-[15px]"
+          >
+            Über uns
           </Link>
         </li>
       </ul>
@@ -69,17 +81,38 @@ const SideMenu = ({ menuRef, setOpenMenu }) => {
         <>
           <ul className="flex flex-col text-center gap-5">
             <li>
-              <Link to="/OrderOverview" onClick={() => setOpenMenu(false)} className="hover:underline sm:text-[18px] text-[15px] text-black">
+              <Link
+                to="Address"
+                onClick={() => setOpenMenu(false)}
+                className="hover:underline sm:text-[18px] text-[15px] text-black"
+              >
+                Adresse
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/OrderOverview"
+                onClick={() => setOpenMenu(false)}
+                className="hover:underline sm:text-[18px] text-[15px] text-black"
+              >
                 Bestellungen
               </Link>
             </li>
-            <li>
-              <Link to="/about-us" onClick={() => setOpenMenu(false)} className="hover:underline sm:text-[18px] text-[15px] text-black">
+            {/* <li>
+              <Link
+                to="/about-us"
+                onClick={() => setOpenMenu(false)}
+                className="hover:underline sm:text-[18px] text-[15px] text-black"
+              >
                 Über uns
               </Link>
-            </li>
+            </li> */}
             <li>
-              <Link to="/cart" onClick={() => setOpenMenu(false)} className="hover:underline sm:text-[18px] text-[15px] text-black">
+              <Link
+                to="/cart"
+                onClick={() => setOpenMenu(false)}
+                className="hover:underline sm:text-[18px] text-[15px] text-black"
+              >
                 cart
               </Link>
             </li>
@@ -107,11 +140,15 @@ const SideMenu = ({ menuRef, setOpenMenu }) => {
               Anmelden
             </Link>
           </li>
-          <li>
-            <Link onClick={() => setOpenMenu(false)} to="/about-us" className="liNav">
+          {/* <li>
+            <Link
+              onClick={() => setOpenMenu(false)}
+              to="/about-us"
+              className="liNav"
+            >
               Über uns
             </Link>
-          </li>
+          </li> */}
         </ul>
       )}
     </div>
