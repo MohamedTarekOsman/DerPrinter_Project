@@ -6,26 +6,39 @@ import ContactMethod from '../ContactMethod/ContactMethod';
 import FollowUs from '../FollowUS/FollowUs';
 
 const ContactLeftSide = () => {
-    const contactInfo = [
-        {
-          icon: location, // استبدل هذا بالمسار أو اسم الأيقونة المناسبة
-          title: "Adresse",
-          description: "Derzeit nicht verfügbar",
-          imgAlt: "Location Icon"
-        },
-        {
-          icon: phone, // استبدل هذا بالمسار أو اسم الأيقونة المناسبة
-          title: "Telefonnummer",
-          description: "+49 30 12345678",
-          imgAlt: "Phone Icon"
-        },
-        {
-          icon: gmail, // استبدل هذا بالمسار أو اسم الأيقونة المناسبة
-          title: "E-Mail",
-          description: "printservices@gmail.com",
-          imgAlt: "SMS Icon"
-        },
-      ];
+  const contactInfo = [
+    {
+      icon: location,
+      title: "Adresse",
+      description: (
+        <>
+          Gerok Str. 32 <br />
+          01307 Dresden
+        </>
+      ),
+      imgAlt: "Location Icon"
+    },
+    {
+      icon: phone,
+      title: "Telefonnummer",
+      description: (
+        <>
+          +49 30 12345678
+        </>
+      ),
+      imgAlt: "Phone Icon"
+    },
+    {
+      icon: gmail,
+      title: "E-Mail",
+      description: (
+        <>
+          printservices@gmail.com
+        </>
+      ),
+      imgAlt: "SMS Icon"
+    },
+  ];
       
   return (
     <div className="contact-info-text">
@@ -48,9 +61,6 @@ const ContactLeftSide = () => {
             }
         </div>
         <FollowUs />
-        <hr className='border-black border-solid my-5'/>
-        <strong>Address</strong>
-        <p>Gerok Str. 32 <br/> 01307 Dresden</p>
     </div>
   )
 }

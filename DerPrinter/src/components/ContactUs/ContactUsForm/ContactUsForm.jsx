@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import InputField from '../../shared/InputField/InputField';
 import TextAreaField from '../../shared/TextareaField/TextareaField';
 import './ContactUsForm.css';
