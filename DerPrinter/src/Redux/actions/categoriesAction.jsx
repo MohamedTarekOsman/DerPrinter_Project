@@ -25,7 +25,7 @@ export const updateCategory = (id, formdata) => async (dispatch) => {
     });
 
     console.log("response", response);
-    toast.success("dd updated successfully!");
+    // toast.success("dd updated successfully!");
     dispatch(getAllCategories());
   } catch (e) {
     dispatch({

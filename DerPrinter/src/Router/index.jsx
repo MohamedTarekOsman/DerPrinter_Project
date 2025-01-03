@@ -34,6 +34,8 @@ import Index from "../Pages/Admin/blog/Index";
 import ForgetPasswordPage from "../Pages/Auth/ForgetPasswordEmail";
 import VerifyPasswordPage from "../Pages/Auth/VerifyPassword";
 import ResetPasswordPage from "../Pages/Auth/ResetPassword";
+import { PaymentForm } from "../PaymentForm/PaymentForm";
+import OrderConfirmation from "../PaymentForm/OrderConfirmation";
 
 const Router = createBrowserRouter(
   createRoutesFromElements(
@@ -69,6 +71,8 @@ const Router = createBrowserRouter(
         <Route path="/about-us" element={<AboutUsPage />} />
         <Route path="/Category/:id" element={<SinglCategory />} />
         <Route path="/blogDetails/:id" element={<BlogDetails />} />
+        <Route path="/payment-form" element={<PaymentForm />} />
+        <Route path="/order-confirmation" element={<OrderConfirmation />} />
 
         <Route
           path="/signup"

@@ -53,8 +53,8 @@ const EditCategory = ({
   const handleImageChange = (e, setImage) => {
     const file = e.target.files[0];
     if (file) {
-      const imageUrl = URL.createObjectURL(file);
-      setImage(imageUrl);
+      // const imageUrl = file;
+      setImage(file);
     }
   };
 
@@ -62,7 +62,6 @@ const EditCategory = ({
     e.preventDefault();
 
     const formData = new FormData();
-
     name && formData.append("name", name);
     title && formData.append("title", title);
     description1 && formData.append("description1", description1);
@@ -193,7 +192,7 @@ const EditCategory = ({
                 />
                 {image && (
                   <img
-                    src={image}
+                    src={image.name?URL.createObjectURL(image):image}
                     className="h-24 w-24 object-contain"
                     alt="img"
                   />

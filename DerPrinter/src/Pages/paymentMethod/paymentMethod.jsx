@@ -23,14 +23,24 @@ const PaymentMethod = () => {
   }, [dispatch, user]);
 
 
-  const handleSelect = async(method) => {
+  const handleSelect = async (method) => {
     setSelectedMethod(method);
-    await dispatch(updateCartOptions(user._id,{
-      paymentOption:method
-    }))
-    // toast.success(`payment method : ${method}`)
+    await dispatch(updateCartOptions(user._id, { paymentOption: method }));
     
-  };
+    if (method === "Visa") {
+      const totalPrice = userRes.data.cart.reduce((sum, item) => sum + item.price, 0)
+      + (userRes?.data?.cart[0]?.orderDelivery === "Standard+ " 
+          ? 20 
+          : userRes?.data?.cart[0]?.orderDelivery === "Overnight" 
+            ? 43 
+            : 0);
+
+    navigate('/payment-form', { state: { totalPrice } });
+    } else {
+        toast.success(`Payment method: ${method}`);
+    }
+};
+
 
   const handleSelectedMethod = async () => {
     if (userRes.data) {
