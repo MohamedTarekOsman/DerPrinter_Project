@@ -40,7 +40,7 @@ const OrdersSchema = new mongoose.Schema({
             userEmail:{type:String},
             userPhone:{type:String},
             address: { type: String},
-            addressDetails: { type: String },
+            AddressDetails: { type: String },
             city: { type: String },
             postalCode: { type: String },
         },

@@ -36,42 +36,42 @@ const UserData = ({ togglePopup, data }) => {
               </div>
               <div className="flex justify-center gap-3">
                 <span className="text-lg font-semibold text-gray-700">
-                  Email:
+                E-Mail:
                 </span>
                 <span className="text-lg text-gray-900">{data?.chosenAddress?.userEmail}</span>
               </div>
               <div className="flex justify-center gap-3">
                 <span className="text-lg font-semibold text-gray-700">
-                  Phone:
+                Telefon:
                 </span>
                 <span className="text-lg text-gray-900">{data?.chosenAddress?.userPhone}</span>
               </div>
               <div className="flex justify-center gap-3">
                 <span className="text-lg font-semibold text-gray-700">
-                  Address:
+                Adresse:
                 </span>
                 <span className="text-lg text-gray-900">{data?.chosenAddress?.address}</span>
               </div>
               <div className="flex justify-center gap-3">
                 <span className="text-lg font-semibold text-gray-700">
-                  Details:
+                Einzelheiten:
                 </span>
                 <span className="text-lg text-gray-900">
-                  {data?.chosenAddress?.addressDetails}
+                  {data?.chosenAddress?.AddressDetails}
                 </span>
               </div>
               <div className="flex justify-center gap-3">
                 <span className="text-lg font-semibold text-gray-700">
-                  City:
+                Stadt:
                 </span>
                 <span className="text-lg text-gray-900">{data?.chosenAddress?.city}</span>
               </div>
               <div className="flex justify-center gap-3">
                 <span className="text-lg font-semibold text-gray-700">
-                  Postal Code:
+                Postleitzahl:
                 </span>
                 <span className="text-lg text-gray-900">
-                  {data?.postalCode}
+                  {data?.chosenAddress?.postalCode}
                 </span>
               </div>
             </div>

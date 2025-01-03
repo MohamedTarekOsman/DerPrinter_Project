@@ -12,7 +12,7 @@ const OrderOverview = () => {
   const dispatch = useDispatch();
   const { allOrders } = useSelector((state) => state.orders); // API response structure assumed
   const [page, setPage] = useState(1);
-  const [limit] = useState(7); // Fixed limit; you can modify this if needed
+  const [limit] = useState(8); // Fixed limit; you can modify this if needed
   const [popupData, setPopupData] = useState(null);
   const [popupData2, setPopupData2] = useState(null);
 
@@ -91,14 +91,14 @@ const OrderOverview = () => {
                 {/* <th className="px-4 py-2 text-left">Benutzername</th>
                 <th className="px-4 py-2 text-left">Benutzer-E-Mail</th>
                 <th className="px-4 py-2 text-left">Benutzer-Telefon</th> */}
-                <th className="px-4 py-2 text-left">bestellenLieferung</th>
-                <th className="px-4 py-2 text-left">Zahlungsmöglichkeit</th>
                 <th className="px-4 py-2 text-left">Bestellnummer</th>
                 <th className="px-4 py-2 text-left">Artikel</th>
+                <th className="px-4 py-2 text-left">bestellenLieferung</th>
                 <th className="px-4 py-2 text-left">Adresse</th>
+                <th className="px-4 py-2 text-left">Zahlungsmöglichkeit</th>
                 <th className="px-4 py-2 text-left">Rechnungsbetrag</th>
                 <th className="px-4 py-2 text-left">Status</th>
-                <th className="px-4 py-2 text-left">entwirft</th>
+                <th className="px-4 py-2 text-left">Artikelvorschau</th>
               </tr>
             </thead>
             <tbody>
@@ -107,15 +107,15 @@ const OrderOverview = () => {
                   {/* <td className=" px-4 py-5">{order?.chosenAddress?.userName}</td>
                   <td className=" px-4 py-5">{order?.chosenAddress?.userEmail}</td>
                   <td className=" px-4 py-5">{order?.chosenAddress?.userPhone}</td> */}
-                  <td className=" px-4 py-5">{order?.orderDelivery=="Overnight"?`${order?.orderDelivery} (+43€) `:order?.orderDelivery=="Standard+ "?`${order?.orderDelivery} (+20€)`:`${order?.orderDelivery} (+0€)`}</td>
-                  <td className=" px-4 py-5">{order?.paymentOption}</td>
                   <td className=" px-4 py-5">{order.id}</td>
                   <td 
                   className=" px-4 py-5 cursor-pointer" 
                   onClick={() => openPopup2(order)}>
                     {order.name}
                   </td>
+                  <td className=" px-4 py-5">{order?.orderDelivery=="Overnight"?`${order?.orderDelivery} (+43€) `:order?.orderDelivery=="Standard+ "?`${order?.orderDelivery} (+20€)`:`${order?.orderDelivery} (+0€)`}</td>
                   <td className=" px-4 py-5">{order?.chosenAddress?.address}</td>
+                  <td className=" px-4 py-5">{order?.paymentOption}</td>
                   <td className=" px-4 py-5">{order.price.toFixed(2)} €</td>
                   <td className=" px-4 py-5">{order.status=="pending"?"Ausstehend":order.status=="error in design"?"Mangelhafte Druckdaten":order.status=="delivering"?"versendet":order.status=="completed"?"In Deuck":order.status=="processing"?"In Bearbeitung":""}</td>
                   <td
@@ -139,12 +139,15 @@ const OrderOverview = () => {
                 {/* <p><strong>Benutzername:</strong> {order?.chosenAddress?.userName}</p>
                 <p><strong>E-Mail:</strong> {order?.chosenAddress?.userEmail}</p>
                 <p><strong>Telefon:</strong> {order?.chosenAddress?.userPhone}</p> */}
-                <p><strong>Lieferung:</strong> {order?.orderDelivery}</p>
-                <p><strong>Zahlungsmöglichkeit:</strong> {order?.paymentOption}</p>
                 <p><strong>Bestellnummer:</strong> {order.id}</p>
                 <p onClick={() => openPopup2(order)} className="cursor-pointer"><strong>Artikel:</strong> {order.name}</p>
+                <hr className="border border-solid boreder-5 my-3"/>
+                <p><strong>Lieferung:</strong> {order?.orderDelivery}</p>
                 <p><strong>Adresse:</strong>{order?.chosenAddress?.address}</p>
+                <hr className="border border-solid boreder-5 my-3"/>
+                <p><strong>Zahlungsmöglichkeit:</strong> {order?.paymentOption}</p>
                 <p><strong>Rechnungsbetrag:</strong> {order.price.toFixed(2)} €</p>
+                <hr className="border border-solid boreder-5 my-3"/>
                 <p><strong>Status:</strong>{order.status=="pending"?"Ausstehend":order.status=="error in design"?"Mangelhafte Druckdaten":order.status=="delivering"?"versendet":order.status=="completed"?"In Deuck":order.status=="processing"?"In Bearbeitung":""}</p>
                 <button
                   className="text-blue-500 mt-2 cursor-pointer"

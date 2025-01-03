@@ -101,7 +101,7 @@ const Signup = () => {
         className="lg:mt-12 md:mt-10 mt-6 w-full max-w-2xl flex flex-col justify-center items-center"
       >
         <div className="flex flex-col max-w-[500px] w-full justify-center mx-auto">
-          <div className="flex justify-between px-10 text-3xl mb-5">
+          <div className="flex justify-between px-10 text-xl mb-5">
             <label>
               <input
                 type="radio"
