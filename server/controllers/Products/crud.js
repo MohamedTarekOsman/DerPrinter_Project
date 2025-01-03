@@ -66,7 +66,7 @@ const updateProduct = AsyncHandler(async (req, res) => {
     if (req.file) product.image = req.file.path; // Update the image if a new file is uploaded
 
     const updatedProduct = await product.save();
-
+    
     res.status(200).json({ message: "Product updated successfully", data: updatedProduct });
 });
 

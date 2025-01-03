@@ -16,6 +16,9 @@ export const LOGIN = "LOGIN";
 export const LOGOUT = "LOGOUT";
 export const REGISTER = "REGISTER";
 export const AUTH_ERROR = "AUTH_ERROR";
+export const FOREGT_PASSWORD="FOREGT_PASSWORD"
+export const VERIFY_PASSWORD="VERIFY_PASSWORD"
+export const RESET_PASSWORD="RESET_PASSWORD"
 
 // orders
 export const GET_ALL_ORDERS="GET_ALL_ORDERS"

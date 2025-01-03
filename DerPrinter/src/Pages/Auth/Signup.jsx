@@ -1,5 +1,5 @@
 import Input from "../../components/ui/Input";
-import Button from "../../components/ui/Button";
+// import Button from "../../components/ui/Button";
 import AuthForm from "../../components/AuthForm";
 import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from "../../Redux/actions/authAction";
@@ -10,10 +10,12 @@ import Loader from "../../components/Loader";
 // import female from "../../assets/images/female.png";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import toast from "react-hot-toast";
-import Select from "react-select";
 
 const Signup = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const [vorname, setVorname] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -22,50 +24,57 @@ const Signup = () => {
   const [postalCode, setpostalCode] = useState("");
   const [phone, setPhone] = useState("");
   const [city, setCity] = useState("");
-  const [visible, setVisible] = useState(false);
   const [gender, setGender] = useState("male");
+  const [visible, setVisible] = useState(false);
+  const [role, setRole] = useState("user"); // Default role
 
-  const navigate = useNavigate();
   const { isAuthenticated, error, loading } = useSelector(
     (state) => state.auth
   );
 
-  const options = [
-    { value: "male", label: "männlich" },
-    { value: "female", label: "weiblich" },
-  ];
-
-  const handleChange = (selectedOption) => {
-    setGender(selectedOption.value); // تحديث الحالة بناءً على اختيار المستخدم
+  const validateForm = () => {
+    if (
+      !vorname ||
+      !name ||
+      !email ||
+      !password ||
+      !address ||
+      !postalCode ||
+      !city ||
+      !phone
+    ) {
+      toast.error("Please fill in all required fields.");
+      return false;
+    }
+    return true;
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // const gender = gender === "male" ? "male" : "female";
 
-    const formData = new FormData();
-    formData.append("email", email);
-    formData.append("password", password);
-    formData.append("name", name);
-    formData.append("address", address);
-    formData.append("addressDetails", addressDetails);
-    formData.append("postalCode", postalCode);
-    formData.append("city", city);
-    formData.append("phone", phone);
-    formData.append("gender", gender);
-    dispatch(
-      registerUser({
-        email,
-        password,
-        name,
-        address,
-        addressDetails,
-        postalCode,
-        phone,
-        city,
-        gender,
-      })
-    );
+    if (!validateForm()) return;
+
+    const userData = {
+      email,
+      password,
+      name: `${vorname} ${name}`,
+      addresses:[
+        {
+          userName: `${vorname} ${name}`,
+          userEmail: email,
+          userPhone: phone,
+          address,
+          AddressDetails: addressDetails,
+          city,
+          postalCode,
+        },
+      ],
+      phone,
+      gender,
+      role,
+    };
+
+    dispatch(registerUser(userData));
   };
 
   useEffect(() => {
@@ -87,12 +96,41 @@ const Signup = () => {
 
   return (
     <AuthForm>
-      {/* Email SignUp form */}
       <form
         onSubmit={handleSubmit}
-        className="lg:mt-12 md:mt-10 mt-6 w-full max-w-2xl"
+        className="lg:mt-12 md:mt-10 mt-6 w-full max-w-2xl flex flex-col justify-center items-center"
       >
         <div className="flex flex-col max-w-[500px] w-full justify-center mx-auto">
+          <div className="flex justify-between px-10 text-3xl mb-5">
+            <label>
+              <input
+                type="radio"
+                value="male"
+                checked={gender === "male"}
+                className="w-5 h-5 mx-2"
+                onChange={(e) => setGender(e.target.value)}
+              />
+              Herr
+            </label>
+            <label>
+              <input
+                type="radio"
+                value="female"
+                checked={gender === "female"}
+                className="w-5 h-5 mx-2"
+                onChange={(e) => setGender(e.target.value)}
+              />
+              Frau
+            </label>
+          </div>
+
+          <Input
+            type="text"
+            placeholder="Vorname"
+            error={error?.vorname}
+            value={vorname}
+            onChange={(e) => setVorname(e.target.value)}
+          />
           <Input
             type="text"
             placeholder="Nachname"
@@ -100,7 +138,6 @@ const Signup = () => {
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
-
           <Input
             type="text"
             placeholder="Straße und Hausnummer"
@@ -149,7 +186,6 @@ const Signup = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-
           <Input
             type={visible ? "text" : "password"}
             placeholder="Passwort"
@@ -171,53 +207,30 @@ const Signup = () => {
               )
             }
           />
-
-          <div className="">
-            <Select
-              placeholder="Choose..."
-              options={options}
-              isSearchable={false}
-              value={options.find((option) => option.value === gender)}
-              onChange={handleChange}
-            />
-          </div>
-
-          {/* <div className="flex gap-4 mb-4 inputLogin justify-between">
-            <label htmlFor="gender" className="flex items-center">
-            Geschlecht
-            </label>
-            <select
-              name="gender"
-              id="gender"
-              value={gender}
-              onChange={(e) => setGender(e.target.value)}
-              className="mr-2 p-2 border border-gray-300 rounded"
-            >
-              <option value="male">männlich</option>
-              <option value="female">weiblich</option>
-            </select>
-          </div> */}
         </div>
 
-        <Button
+        {/* Submit as User */}
+        <button
           type="submit"
-          text="Als Unternehmen ein Konto erstellen"
-          className="bg-black text-white hover:bg-gray-800 w-full max-w-2xl mt-6"
-        />
+          className="bg-black text-white hover:bg-gray-800 w-full max-w-[500px] mt-6 py-4 rounded-xl"
+          onClick={() => setRole("user")}
+        >
+          Als Benutzer ein Konto erstellen
+        </button>
+
+        {/* Submit as Company */}
+        <button
+          type="submit"
+          className="bg-gray-500 text-white hover:bg-gray-600 w-full max-w-[500px] mt-6 py-4 rounded-xl"
+          onClick={() => setRole("company")}
+        >
+          Als Unternehmen ein Konto erstellen
+        </button>
       </form>
-
-      <h3 className="lg:my-5 md:my-4 my-3 md:text-[20px] sm:text-[17px] text-[15px] text-black font-semibold">
-        Oder
-      </h3>
-
-      <a
-        className="bg-white hover:bg-gray-100 max-w-2xl w-full btnLog text-center"
-        href="/login"
-      >
-        Erstellen Sie ein Konto als Einzelperson
-      </a>
     </AuthForm>
   );
 };
 
 export default Signup;
+
+

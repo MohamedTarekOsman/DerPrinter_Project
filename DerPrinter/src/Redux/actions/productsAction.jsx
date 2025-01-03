@@ -1,6 +1,6 @@
 import { useGetData} from "../../CustomHooks/useGetData";
 import { useInsertDataWithImage } from "../../CustomHooks/useInsertData";
-import { useUpdateData } from "../../CustomHooks/useUpdateDate";
+import { useUpdateDataWithImage } from "../../CustomHooks/useUpdateDate";
 import  useDeleteData  from "../../CustomHooks/useDeleteData";
 import { CREATE_PRODUCTS, DELETE_PRODUCTS, GET_ALL_PRODUCTS, GET_ERROR, GET_ONE_PRODUCT, UPDATE_PRODUCTS } from "../types/Types";
 
@@ -57,7 +57,7 @@ export const getProductById=(id)=>async (dispatch)=>{
 //update product (options and properties)
 export const updateProduct=(id,formdata)=>async (dispatch)=>{
     try{
-        const response=await useUpdateData(`/api/v1/products/${id}`,formdata);
+        const response=await useUpdateDataWithImage(`/api/v1/products/${id}`,formdata);
         dispatch({
             type:UPDATE_PRODUCTS,
             payload:response,

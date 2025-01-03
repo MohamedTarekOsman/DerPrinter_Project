@@ -28,8 +28,7 @@ const Footer = () => {
               />
             </a>
             <p className="xl:text-[24px] lg:text-[22px] text-[18px] md:mt-7 mt-4 text-white/60">
-              Sie brauchen es. Wir drucken es. <br />
-              Sie lieben es.
+              Ihre Ideen, unsere Leidenschaft –<br/> Derprinter macht’s möglich!
             </p>
           </div>
 
@@ -70,7 +69,7 @@ const Footer = () => {
                 </li>
                 <li className="flex items-center space-x-2">
                   <img src={gmail} alt="Email" className="lg:h-6 h-5" />
-                  <span className="txtFooter">infp@derprinter.de</span>
+                  <span className="txtFooter">info@derprinter.de</span>
                 </li>
               </ul>
             </div>
@@ -82,10 +81,10 @@ const Footer = () => {
         <div className="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 lg:gap-0 sm:gap-7 gap-4">
           <div>
             <Link to="/AGB">
-              <span>AGB , &nbsp;&nbsp;</span>
+              <span>AGB &nbsp;&nbsp;| &nbsp;&nbsp;</span>
             </Link>
             <Link to="/Datenschutz">
-              <span>Datenschutz , &nbsp;&nbsp;</span>
+              <span>Datenschutz &nbsp;&nbsp;| &nbsp;&nbsp;</span>
             </Link>
             <Link to="/Impressum">
               <span>Impressum</span>
@@ -113,13 +112,13 @@ const Footer = () => {
               >
                 <img src={facebook} alt="" />
               </a>
-              <a href="#" className="block " target="_blank">
+              <a href="https://www.instagram.com/derprinter.official/profilecard/?igsh=b3h5MndraWdqMm5j" className="block " target="_blank">
                 <img src={instagram} alt="" />
               </a>
-              <a href="#" className="block " target="_blank">
+              <a href="https://x.com/Derprinter_off?t=VVZ1A7yAuf0iDJhljrDdHQ&s=09" className="block " target="_blank">
                 <img src={twitter} alt="" />
               </a>
-              <a href="#" className="block " target="_blank">
+              <a href="https://pin.it/5AYzrGnU9" className="block " target="_blank">
                 <img src={social} alt="" />
               </a>
             </div>

@@ -1,5 +1,5 @@
 const express = require('express');
-const { signIn, signUp, facebookLogin } = require('../controllers/User/authController');
+const { signIn, signUp, facebookLogin, forgetPassword, verifyPassResetCode, resetPassword } = require('../controllers/User/authController');
 const { addRating } = require('../controllers/User/addRatingController');
 const { getAllUsers, deleteUser, getUserById } = require('../controllers/User/crud');
 const { addToCart } = require('../controllers/User/addToCartController');
@@ -17,6 +17,9 @@ router.get("/:userId", getUserById);
 router.delete("/:userId", deleteUser);
 router.post('/signIn', signIn);
 router.post('/signUp', signUp);
+router.post('/forgotPassword', forgetPassword)
+router.post('/verifyResetCode', verifyPassResetCode)
+router.patch('/resetPassword', resetPassword)
 router.post('/facebook', facebookLogin);
 router.post("/cart/:userId",upload.single("image"), addToCart); 
 router.delete("/cart/:userId", deleteFromCart); 

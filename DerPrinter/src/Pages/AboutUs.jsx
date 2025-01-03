@@ -29,11 +29,12 @@ import ContactHeader from "../components/ContactUs/ContactHeader/ContactHeader";
 
       {!loading?<AboutUs  data={homeData[0].AboutSection}/>:<p>Loading</p>}
       <ContactHeader 
+        className={"about-us-section-contact"}
         title={"Unser Versprechen"}
         desc={"Ihre Ideen. Ihre Vision. Perfekt umgesetzt. Wir garantieren Ihnen hochwertige Druckerzeugnisse, die mit Liebe zum Detail und modernster Technik produziert werden. Ihre Zufriedenheit steht dabei immer an erster Stelle."}
       />
       <WhyUsSection />
-      <WhatWeOfferSection />
+      {/* <WhatWeOfferSection /> */}
       <FeaturesList />
       {!loading && <BannerSection data={homeData[0]?.HintSection}/>}
       <ReviewsList />

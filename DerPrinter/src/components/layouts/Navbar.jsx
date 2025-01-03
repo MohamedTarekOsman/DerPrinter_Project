@@ -70,8 +70,6 @@ const Navbar = () => {
     };
   }, [openMenu]);
 
-
-
   return (
     <nav className="bg-black text-white">
       <div className="lg:px-8 px-5 py-3 flex items-center justify-between gap-3">
@@ -109,7 +107,7 @@ const Navbar = () => {
 
               <li>
                 <Link to="/Address" className="txtNavbar">
-                  Adresse
+                  Adressbuch
                 </Link>
               </li>
             </>

@@ -1,5 +1,5 @@
-import slideOne from '../../../assets/images/1.png';
-import slide2 from '../../../assets/images/2.png';
+import slideOne from '../../../assets/images/card-1.webp';
+import slide2 from '../../../assets/images/card-2.webp';
 import slide3 from '../../../assets/images/3.png';
 
 function WhyUsSection() {

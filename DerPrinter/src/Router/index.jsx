@@ -31,6 +31,9 @@ import AboutUsPage from "../Pages/AboutUs";
 import CreateBlog from "../Pages/Admin/blog/CreateBlog";
 import UpdateBlog from "../Pages/Admin/blog/UpdateBlog";
 import Index from "../Pages/Admin/blog/Index";
+import ForgetPasswordPage from "../Pages/Auth/ForgetPasswordEmail";
+import VerifyPasswordPage from "../Pages/Auth/VerifyPassword";
+import ResetPasswordPage from "../Pages/Auth/ResetPassword";
 
 const Router = createBrowserRouter(
   createRoutesFromElements(
@@ -58,6 +61,9 @@ const Router = createBrowserRouter(
         />
 
         <Route path="/blogs" element={<Blogs />} />
+        <Route path="/forgetPassword" element={<ForgetPasswordPage />} />
+        <Route path="/verifyPassword" element={<VerifyPasswordPage />} />
+        <Route path="/resetPassword" element={<ResetPasswordPage />} />
         <Route path="/contact-us" element={<ContactUs />} />
         <Route path="/Category/:id" element={<SinglCategory />} />
         <Route path="/about-us" element={<AboutUsPage />} />

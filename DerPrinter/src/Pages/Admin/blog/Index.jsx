@@ -2,6 +2,9 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { deleteBlog, getAllBlogs } from "../../../Redux/actions/BlogAction";
+import Breadcamp from "../../../components/ui/Breadcamp";
+
+const links = [{ name: "Der Blog", link: "" }];
 
 const Index = () => {
   const dispatch = useDispatch();
@@ -17,9 +20,9 @@ const Index = () => {
     }
   };
 
-  ;
   return (
     <div className="mt-7 w-full">
+      <Breadcamp isDash={true} links={links} />
       <h2 className="text-[30px] font-bold">Der Blog</h2>
       <div className="px-10 mt-5">
         <div className="py-12">

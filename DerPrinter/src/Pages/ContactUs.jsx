@@ -1,13 +1,13 @@
-import ContactHeader from '../components/ContactUs/ContactHeader/ContactHeader';
+// import ContactHeader from '../components/ContactUs/ContactHeader/ContactHeader';
 import ContactLeftSide from '../components/ContactUs/ContactLeftSide/ContactLeftSide';
 import ContactUsForm from '../components/ContactUs/ContactUsForm/ContactUsForm';
 
 const ContactUs = () => {
   return (
     <>
-      <div className="container">
+      {/* <div className="container">
         <ContactHeader />
-      </div>
+      </div> */}
       <div className="contact-info-and-form">
         <div className="container">
           <ContactLeftSide />

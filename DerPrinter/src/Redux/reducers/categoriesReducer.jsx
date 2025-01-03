@@ -11,6 +11,7 @@ const initial = {
   updateCategories: [],
   deleteCategories: [],
   loading: false,
+  error: null,
 };
 
 const categoriesReducer = (state = initial, action) => {

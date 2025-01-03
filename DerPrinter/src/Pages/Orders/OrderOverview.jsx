@@ -88,14 +88,15 @@ const OrderOverview = () => {
           <table className="w-full text-lg table-auto hidden sm:table">
             <thead>
               <tr>
-                <th className="px-4 py-2 text-left">Benutzername</th>
+                {/* <th className="px-4 py-2 text-left">Benutzername</th>
                 <th className="px-4 py-2 text-left">Benutzer-E-Mail</th>
-                <th className="px-4 py-2 text-left">Benutzer-Telefon</th>
+                <th className="px-4 py-2 text-left">Benutzer-Telefon</th> */}
                 <th className="px-4 py-2 text-left">bestellenLieferung</th>
                 <th className="px-4 py-2 text-left">Zahlungsmöglichkeit</th>
                 <th className="px-4 py-2 text-left">Bestellnummer</th>
                 <th className="px-4 py-2 text-left">Artikel</th>
-                <th className="px-4 py-2 text-left">Offener Betrag</th>
+                <th className="px-4 py-2 text-left">Adresse</th>
+                <th className="px-4 py-2 text-left">Rechnungsbetrag</th>
                 <th className="px-4 py-2 text-left">Status</th>
                 <th className="px-4 py-2 text-left">entwirft</th>
               </tr>
@@ -103,19 +104,20 @@ const OrderOverview = () => {
             <tbody>
               {userOrders?.map((order) => (
                 <tr key={order._id} className={`border-b  ${order?.status=="error in design"?'bg-red-200':'bg-white hover:bg-gray-50'}`}>
-                  <td className=" px-4 py-5">{order?.chosenAddress?.userName}</td>
+                  {/* <td className=" px-4 py-5">{order?.chosenAddress?.userName}</td>
                   <td className=" px-4 py-5">{order?.chosenAddress?.userEmail}</td>
-                  <td className=" px-4 py-5">{order?.chosenAddress?.userPhone}</td>
-                  <td className=" px-4 py-5">{order?.orderDelivery}</td>
+                  <td className=" px-4 py-5">{order?.chosenAddress?.userPhone}</td> */}
+                  <td className=" px-4 py-5">{order?.orderDelivery=="Overnight"?`${order?.orderDelivery} (+43€) `:order?.orderDelivery=="Standard+ "?`${order?.orderDelivery} (+20€)`:`${order?.orderDelivery} (+0€)`}</td>
                   <td className=" px-4 py-5">{order?.paymentOption}</td>
-                  <td className=" px-4 py-5">{order._id}</td>
+                  <td className=" px-4 py-5">{order.id}</td>
                   <td 
                   className=" px-4 py-5 cursor-pointer" 
                   onClick={() => openPopup2(order)}>
                     {order.name}
                   </td>
-                  <td className=" px-4 py-5">{order.price} €</td>
-                  <td className=" px-4 py-5">{order.status}</td>
+                  <td className=" px-4 py-5">{order?.chosenAddress?.address}</td>
+                  <td className=" px-4 py-5">{order.price.toFixed(2)} €</td>
+                  <td className=" px-4 py-5">{order.status=="pending"?"Ausstehend":order.status=="error in design"?"Mangelhafte Druckdaten":order.status=="delivering"?"versendet":order.status=="completed"?"In Deuck":order.status=="processing"?"In Bearbeitung":""}</td>
                   <td
                     className=" px-4 py-5 cursor-pointer"
                     onClick={() => openPopup(order)}
@@ -134,20 +136,21 @@ const OrderOverview = () => {
                 key={order._id}
                 className="border-b bg-white rounded-lg shadow p-4 mb-4"
               >
-                <p><strong>Benutzername:</strong> {order?.chosenAddress?.userName}</p>
+                {/* <p><strong>Benutzername:</strong> {order?.chosenAddress?.userName}</p>
                 <p><strong>E-Mail:</strong> {order?.chosenAddress?.userEmail}</p>
-                <p><strong>Telefon:</strong> {order?.chosenAddress?.userPhone}</p>
+                <p><strong>Telefon:</strong> {order?.chosenAddress?.userPhone}</p> */}
                 <p><strong>Lieferung:</strong> {order?.orderDelivery}</p>
                 <p><strong>Zahlungsmöglichkeit:</strong> {order?.paymentOption}</p>
-                <p><strong>Bestellnummer:</strong> {order._id}</p>
-                <p onClick={() => openPopup2(order)}><strong>Artikel:</strong> {order.name}</p>
-                <p><strong>Offener Betrag:</strong> {order.price} €</p>
-                <p><strong>Status:</strong> {order.status}</p>
+                <p><strong>Bestellnummer:</strong> {order.id}</p>
+                <p onClick={() => openPopup2(order)} className="cursor-pointer"><strong>Artikel:</strong> {order.name}</p>
+                <p><strong>Adresse:</strong>{order?.chosenAddress?.address}</p>
+                <p><strong>Rechnungsbetrag:</strong> {order.price.toFixed(2)} €</p>
+                <p><strong>Status:</strong>{order.status=="pending"?"Ausstehend":order.status=="error in design"?"Mangelhafte Druckdaten":order.status=="delivering"?"versendet":order.status=="completed"?"In Deuck":order.status=="processing"?"In Bearbeitung":""}</p>
                 <button
-                  className="text-blue-500 mt-2"
+                  className="text-blue-500 mt-2 cursor-pointer"
                   onClick={() => openPopup(order)}
                 >
-                  Details anzeigen
+                  Artikelvorschau
                 </button>
               </div>
             ))}
@@ -183,7 +186,7 @@ const OrderOverview = () => {
         {popupData && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
             <div className="bg-white rounded-lg shadow-lg w-[90%] max-w-2xl p-6 relative">
-              <h2 className="text-2xl font-bold mb-4">Order images</h2>
+              <h2 className="text-2xl font-bold mb-4">Artikelvorschau</h2>
               <button
                 className="absolute top-4 right-4 text-gray-500 hover:text-black"
                 onClick={closePopup}
@@ -198,7 +201,7 @@ const OrderOverview = () => {
                       alt={item.name}
                       className="w-16 h-16 object-cover rounded-md"
                     />
-                    <span>{item.status}</span>
+                    <span>{item.status=="success"?"Erfolg":item.status=="error in design"?"Fehler im Design":item.status=="updated"?"aktualisiert":"Ausstehend"}</span>
                     {item.status === "error in design"?(
                       <>
                         <input
@@ -212,7 +215,7 @@ const OrderOverview = () => {
                           htmlFor={`file-upload-${item.id}`}
                           className="text-blue-500 hover:underline cursor-pointer"
                         >
-                          Upload
+                          Hochladen
                         </label>
                       </>):(
                       <a
@@ -222,7 +225,7 @@ const OrderOverview = () => {
                       rel="noopener noreferrer"
                       download
                     >
-                      Download
+                      herunterladen
                     </a>
                     )}
                     
@@ -237,7 +240,7 @@ const OrderOverview = () => {
         {popupData2 && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
             <div className="bg-white rounded-lg shadow-lg w-[90%] max-w-2xl p-6 relative">
-              <h2 className="text-2xl font-bold mb-4">Order Details</h2>
+              <h2 className="text-2xl font-bold mb-4">Bestelldetails</h2>
               <button
                 className="absolute top-4 right-4 text-gray-500 hover:text-black"
                 onClick={closePopup2}

@@ -1,10 +1,13 @@
-import { LOGIN, LOGOUT, REGISTER, AUTH_ERROR } from "../types/Types";
+import { LOGIN, LOGOUT, REGISTER, AUTH_ERROR, FOREGT_PASSWORD, VERIFY_PASSWORD, RESET_PASSWORD } from "../types/Types";
 
 const initial = {
   user: null,
   isAuthenticated: false,
   loading: false,
   error: null,
+  forgetPassword:[],
+  verifyPassword:[],
+  resetPassword:[],
 };
 
 const authReducer = (state = initial, action) => {
@@ -25,6 +28,21 @@ const authReducer = (state = initial, action) => {
         isAuthenticated: false,
         loading: false,
       };
+    case FOREGT_PASSWORD:
+          return {
+              ...state,
+              forgetPassword: action.payload,
+          }
+      case VERIFY_PASSWORD:
+          return {
+              ...state,
+              verifyPassword: action.payload,
+          }
+      case RESET_PASSWORD:
+          return {
+              ...state,
+              resetPassword: action.payload,
+          }
     case AUTH_ERROR:
       return {
         ...state,

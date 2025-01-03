@@ -16,7 +16,7 @@ const OrdersDashboard = () => {
   const [endDate, setEndDate] = useState(""); // endDate
 
   useEffect(() => {
-    dispatch(getAllOrders(10000,1));
+    dispatch(getAllOrders(10000, 1));
   }, [dispatch]);
 
   const orders = allOrders?.data || []; // Safeguard to access allOrders.data
@@ -58,7 +58,7 @@ const OrdersDashboard = () => {
   return (
     <>
       <div className="p-4 md:p-8 bg-gray-100 min-h-screen">
-        <h1 className="text-xl md:text-2xl font-bold mb-4 md:mb-6">
+        <h1 className="text-[17px] sm:text-xl md:text-2xl font-bold mb-4 md:mb-6">
           Bestellungen
         </h1>
 

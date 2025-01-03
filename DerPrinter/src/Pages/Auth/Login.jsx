@@ -3,7 +3,7 @@ import Button from "../../components/ui/Button";
 import AuthForm from "../../components/AuthForm";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../Redux/actions/authAction";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Loader from "../../components/Loader";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
@@ -76,9 +76,9 @@ const Login = () => {
               )
             }
           />
-          <a href="#" className="text-sm text-black underline">
+          <Link to="/forgetPassword" className="text-sm text-black underline">
             Passwort vergessen?
-          </a>
+          </Link>
           <p className="text-xs text-black/50 md:my-6 my-4">
             Ich stimme den Nutzungsbedingungen zu, dass Sie meine persönlichen
             Daten gemäß der Datenschutzrichtlinie verwenden, und erkenne an,

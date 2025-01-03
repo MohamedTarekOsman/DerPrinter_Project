@@ -1,29 +1,29 @@
 import ContactHeader from '../ContactHeader/ContactHeader';
 import phone from '../../../assets/svg/phone-call-contact.svg';
-import location from '../../../assets/svg/location.svg';
+// import location from '../../../assets/svg/location.svg';
 import gmail from '../../../assets/svg/gmail.svg';
 import ContactMethod from '../ContactMethod/ContactMethod';
 import FollowUs from '../FollowUS/FollowUs';
 
 const ContactLeftSide = () => {
   const contactInfo = [
-    {
-      icon: location,
-      title: "Adresse",
-      description: (
-        <>
-          Gerok Str. 32 <br />
-          01307 Dresden
-        </>
-      ),
-      imgAlt: "Location Icon"
-    },
+    // {
+    //   icon: location,
+    //   title: "Adresse",
+    //   description: (
+    //     <>
+    //       Gerok Str. 32 <br />
+    //       01307 Dresden
+    //     </>
+    //   ),
+    //   imgAlt: "Location Icon"
+    // },
     {
       icon: phone,
       title: "Telefonnummer",
       description: (
         <>
-          +49 30 12345678
+          +0163 3503501
         </>
       ),
       imgAlt: "Phone Icon"
@@ -33,7 +33,7 @@ const ContactLeftSide = () => {
       title: "E-Mail",
       description: (
         <>
-          printservices@gmail.com
+          info@derprinter.de
         </>
       ),
       imgAlt: "SMS Icon"
@@ -44,8 +44,8 @@ const ContactLeftSide = () => {
     <div className="contact-info-text">
         <ContactHeader 
             className={"contact-form-desc"}
-            title={"Nehmen Sie Kontakt mit uns auf"}
-            desc={"Wir freuen uns, von Ihnen zu hören! Egal, ob Sie Fragen zu unseren Produkten haben, eine Sonderanfertigung benötigen oder einfach nur Hallo sagen möchten, erreichen Sie uns über das Kontaktformular oder die unten stehenden Angaben."}
+            title={"Sprechen Sie mit uns"}
+            desc={"Unser Team ist von Montag bis Freitag, 10:00 bis 16:00 Uhr, für Sie da. Sie erreichen uns telefonisch unter 0163 3503501, per Mail oder über unser Kontaktformular.Haben Sie Fragen zu unseren Produkten, zur Erstellung von Druckdaten, den aktuellen Lieferzeiten oder wünschen eine ausführliche Beratung? Unsere Expertinnen und Experten stehen Ihnen mit Rat und Tat zur Seite und helfen Ihnen gerne weiter"}
         />
         <div className="methods">
             {

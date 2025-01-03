@@ -28,8 +28,8 @@ import { fetchHomeOrBlogsData } from "../Utils/GetApi";
     <div>
       {!loading && <HomeHeroSection slidesData={slidesData}/> }
       <ProductList 
-        title={"Ausgewählte Produkte"}
-        subTitle={"Von Ideen zum Druck – einzigartig, wie du es willst"}
+        title={"Derprinter – Ihre Online-Druckerei für maßgeschneiderte Printprodukte"}
+        // subTitle={"Von Ideen zum Druck – einzigartig, wie du es willst"}
       />
       {!loading?<AboutUs  data={homeData[0]?.AboutSection}/>:<p>Loading</p>}
       <ProductSlider />

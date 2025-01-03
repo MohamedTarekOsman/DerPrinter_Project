@@ -1,6 +1,5 @@
 import { useGetData } from "../../CustomHooks/useGetData";
 import { useInsertDataWithImage } from "../../CustomHooks/useInsertData";
-import { useUpdateData } from "../../CustomHooks/useUpdateDate";
 import useDeleteData from "../../CustomHooks/useDeleteData";
 import {
   CREATE_CATEGORY,
@@ -10,6 +9,31 @@ import {
   UPDATE_CATEGORY,
 } from "../types/Types";
 import toast from "react-hot-toast";
+import { useUpdateDataWithImage } from "../../CustomHooks/useUpdateDate";
+
+//update Category (options and properties)
+export const updateCategory = (id, formdata) => async (dispatch) => {
+  try {
+    const response = await useUpdateDataWithImage(
+      `/api/v1/categories/${id}`,
+      formdata
+    );
+    dispatch({
+      type: UPDATE_CATEGORY,
+      payload: response.data,
+      loading: true,
+    });
+
+    console.log("response", response);
+    toast.success("dd updated successfully!");
+    dispatch(getAllCategories());
+  } catch (e) {
+    dispatch({
+      type: GET_ERROR,
+      payload: "Error " + e,
+    });
+  }
+};
 
 //create Category
 export const createCategory = (formData, onSuccess) => async (dispatch) => {
@@ -51,24 +75,6 @@ export const getAllCategories = () => async (dispatch) => {
     dispatch({
       type: GET_ERROR,
       payload: "Error " + e.message,
-    });
-  }
-};
-
-//update Category (options and properties)
-export const updateCategory = (id, formdata) => async (dispatch) => {
-  try {
-    const response = await useUpdateData(`/api/v1/categories/${id}`, formdata);
-    dispatch({
-      type: UPDATE_CATEGORY,
-      payload: response.data,
-      loading: true,
-    });
-    dispatch(getAllCategories());
-  } catch (e) {
-    dispatch({
-      type: GET_ERROR,
-      payload: "Error " + e,
     });
   }
 };

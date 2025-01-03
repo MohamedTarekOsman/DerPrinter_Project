@@ -6,6 +6,9 @@ import Input from "../../../components/ui/Input";
 import Loader from "../../../components/Loader";
 import toast from "react-hot-toast";
 import { getAllCategories } from "../../../Redux/actions/categoriesAction";
+import Breadcamp from "../../../components/ui/Breadcamp";
+
+const links = [{ name: "Update Slider", link: "" }];
 
 const UpdateSlider = () => {
   const { _id } = useParams();
@@ -20,9 +23,7 @@ const UpdateSlider = () => {
     dispatch(getAllCategories());
   }, [dispatch]);
 
-  useEffect(()=>{
-    ;
-  },[product])
+  useEffect(() => {}, [product]);
 
   const [slidersData, setSlidersData] = useState([]);
 
@@ -75,7 +76,6 @@ const UpdateSlider = () => {
   const handleSliderChange = (index, field, value) => {
     const updatedSliders = [...slidersData];
     updatedSliders[index][field] = value;
-    ;
     setSlidersData(updatedSliders);
   };
 
@@ -133,10 +133,9 @@ const UpdateSlider = () => {
     return <Loader />;
   }
 
-  // ;
-
   return (
     <div className="mt-7 w-full">
+      <Breadcamp isDash={true} links={links} />
       <h2 className="text-[30px] font-bold">Update Slider</h2>
       <form onSubmit={handleSubmit} className="px-10 mt-5">
         {slidersData.map((slider, index) => (
@@ -177,7 +176,11 @@ const UpdateSlider = () => {
                 >
                   <option value="" className="bg-blue-400">
                     {slider.link
-                      ? `${product?.find(product => product._id === slider.link)?.name}`
+                      ? `${
+                          product?.find(
+                            (product) => product._id === slider.link
+                          )?.name
+                        }`
                       : "Link : Select a Product"}
                   </option>
                   {product

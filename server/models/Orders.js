@@ -5,6 +5,9 @@ const OrdersSchema = new mongoose.Schema({
         required: true,
         trim: true,
     },
+    id:{
+        type:String,
+    },
     images:[{
         image:{
             type:String,

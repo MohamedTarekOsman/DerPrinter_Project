@@ -8,6 +8,8 @@ import box from "../../assets/svg/box-open-full 1.svg";
 import brand from "../../assets/svg/brand 1.svg";
 import stats from "../../assets/svg/stats 1.svg";
 import graphic from "../../assets/svg/graphic-design 1.svg";
+import orderDelivery from "../../assets/images/delivery-car.png";
+import wallet from "../../assets/images/wallet.png";
 import { useState } from "react";
 import UserData from "./UserData";
 import { useDispatch } from "react-redux";
@@ -17,11 +19,21 @@ import PopupDesign from "./PopupDesign";
 import { FiX } from "react-icons/fi";
 
 const statuses = [
-  "pending",
-  "error in design",
-  "delivering",
-  "completed",
-  "processing",
+  { value:"pending",
+    Text:"Ausstehend"
+  },
+  { value:"error in design",
+    Text:"Mangelhafte Druckdaten"
+  },
+  { value:"delivering",
+    Text:"versendet"
+  },
+  { value:"completed",
+    Text:"In Deuck"
+  },
+  { value:"processing",
+    Text:"In Bearbeitung"
+  },
 ];
 
 const OrdersTable = ({ statusFilteredOrders, allOrders }) => {
@@ -32,7 +44,7 @@ const OrdersTable = ({ statusFilteredOrders, allOrders }) => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [popupData2, setPopupData2] = useState(null);
 
-  const closePopup = async() => {
+  const closePopup = async () => {
     setSelectedImage(null);
     setShowPopup(false);
     // window.location.reload(false);
@@ -42,7 +54,6 @@ const OrdersTable = ({ statusFilteredOrders, allOrders }) => {
     setPopupData2(order);
   };
 
-  
   const closePopup2 = () => {
     setPopupData2(null);
   };
@@ -101,9 +112,9 @@ const OrdersTable = ({ statusFilteredOrders, allOrders }) => {
   return (
     <>
       <div className="min-w-[300px] w-full">
-        <table className="w-full text-left  border-collapse border border-gray-200">
+        <table className="w-full text-left border-collapse border border-gray-200">
           <thead>
-            <tr className="bg-gray-100">
+            <tr className="bg-gray-100 px-2">
               <th className="p-2 md:p-3 border-b font-medium">
                 <div className="flex items-center gap-2 text-sm md:text-base">
                   <FaUser />
@@ -111,7 +122,7 @@ const OrdersTable = ({ statusFilteredOrders, allOrders }) => {
                 </div>
               </th>
               <th className="p-2 md:p-3 border-b font-medium">
-                <div className="flex items-center gap-2 text-sm md:text-base">
+                <div className="flex items-center justify-center gap-2 text-sm md:text-base">
                   <img
                     src={menu}
                     alt="menu"
@@ -121,7 +132,7 @@ const OrdersTable = ({ statusFilteredOrders, allOrders }) => {
                 </div>
               </th>
               <th className="p-2 md:p-3 border-b font-medium">
-                <div className="flex items-center gap-2 text-sm md:text-base">
+                <div className="flex items-center  gap-2 text-sm md:text-base">
                   <img
                     src={calendar}
                     alt="calendar"
@@ -147,7 +158,28 @@ const OrdersTable = ({ statusFilteredOrders, allOrders }) => {
                 </div>
               </th>
               <th className="p-2 md:p-3 border-b font-medium">
-                <div className="flex items-center gap-2 text-sm md:text-base">
+                <div className="flex items-center justify-center gap-2 text-sm md:text-base">
+                  <img
+                    src={wallet}
+                    alt="wallet"
+                    className="w-3 h-3 md:w-4 md:h-4"
+                  />
+                  Zahlungsoption
+                </div>
+              </th>
+
+              <th className="p-2 md:p-3 border-b font-medium">
+                <div className="flex items-center justify-center gap-1 text-sm md:text-base ">
+                  <img
+                    src={orderDelivery}
+                    alt="orderDelivery"
+                    className="w-3 h-3 md:w-5 md:h-5"
+                  />
+                  Lieferung
+                </div>
+              </th>
+              <th className="p-2 md:p-3 border-b font-medium">
+                <div className="flex items-center justify-center gap-2 text-sm md:text-base">
                   <img
                     src={stats}
                     alt="stats"
@@ -157,7 +189,7 @@ const OrdersTable = ({ statusFilteredOrders, allOrders }) => {
                 </div>
               </th>
               <th className="p-2 md:p-3 border-b font-medium">
-                <div className="flex items-center gap-2 text-sm md:text-base">
+                <div className="flex items-center justify-center gap-2 text-sm md:text-base">
                   <img
                     src={graphic}
                     alt="graphic"
@@ -172,7 +204,18 @@ const OrdersTable = ({ statusFilteredOrders, allOrders }) => {
           <tbody>
             {statusFilteredOrders.length > 0 ? (
               statusFilteredOrders.map((order) => (
-                <tr key={order._id} className={` ${order?.status=="error in design"?'bg-red-200': order?.images?.some(image => image.status === 'updated')?'bg-green-200' :'hover:bg-gray-50'}`}>
+                <tr
+                  key={order._id}
+                  className={` ${
+                    order?.status == "error in design"
+                      ? "bg-red-200"
+                      : order?.images?.some(
+                          (image) => image.status === "updated"
+                        )
+                      ? "bg-green-200"
+                      : "hover:bg-gray-50"
+                  }`}
+                >
                   <td
                     className="p-2 md:p-3 border-b border-gray-200 cursor-pointer"
                     onClick={() => handlePopupOpen(order?._id)}
@@ -180,7 +223,7 @@ const OrdersTable = ({ statusFilteredOrders, allOrders }) => {
                     {order?.chosenAddress?.userName}
                   </td>
                   <td className="p-2 md:p-3 border-b border-gray-200">
-                    {order?._id}
+                    {order?.id}
                   </td>
                   <td className="p-2 md:p-3 border-b border-gray-200">
                     {new Date(order?.createdAt).toLocaleDateString("de-DE", {
@@ -189,11 +232,21 @@ const OrdersTable = ({ statusFilteredOrders, allOrders }) => {
                       year: "numeric",
                     })}
                   </td>
-                  <td className="p-2 md:p-3 border-b border-gray-200" onClick={() => openPopup2(order)}>
+                  <td
+                    className="p-2 md:p-3 border-b border-gray-200"
+                    onClick={() => openPopup2(order)}
+                  >
                     {order?.name}
                   </td>
                   <td className="p-2 md:p-3 border-b border-gray-200">
-                    {order?.price}
+                    {order?.price.toFixed(2)}
+                  </td>
+                  <td className="p-2 md:p-3 border-b border-gray-200">
+                    {order?.paymentOption}
+                  </td>
+
+                  <td className="p-2 md:p-3 border-b border-gray-200">
+                    {order?.orderDelivery}
                   </td>
                   <td className="p-2 md:p-3 border-b border-gray-200">
                     <select
@@ -208,11 +261,11 @@ const OrdersTable = ({ statusFilteredOrders, allOrders }) => {
                       className="border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     >
                       <option value="" disabled>
-                        Choose
+                        Wählen
                       </option>
                       {statuses.map((status, idx) => (
-                        <option key={idx} value={status}>
-                          {status}
+                        <option key={idx} value={status.value}>
+                          {status.Text}
                         </option>
                       ))}
                     </select>
@@ -231,16 +284,16 @@ const OrdersTable = ({ statusFilteredOrders, allOrders }) => {
                     >
                       {order?.images?.length > 0 ? (
                         <>
-                          <option value="">Choose</option>
+                          <option value="">Wählen</option>
                           {order?.images?.map((imageObj, index) => (
                             <option key={index} value={imageObj.image}>
                               {/* Image {index + 1} */}
-                              {order.name.trim().split(',')[index]}
+                              {order.name.trim().split(",")[index]}
                             </option>
                           ))}
                         </>
                       ) : (
-                        <option value="null">No images available</option>
+                        <option value="null">Keine Bilder verfügbar</option>
                       )}
                     </select>
                   </td>
@@ -263,31 +316,31 @@ const OrdersTable = ({ statusFilteredOrders, allOrders }) => {
       {showPopup && selectedUserData && (
         <UserData
           togglePopup={togglePopup}
-          data={selectedUserData.chosenAddress}
+          data={selectedUserData}
         />
       )}
 
-                {popupData2 && (
-                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-                  <div className="bg-white rounded-lg shadow-lg w-[90%] max-w-2xl p-6 relative">
-                    <h2 className="text-2xl font-bold mb-4">Order Details</h2>
-                    <button
-                      className="absolute top-4 right-4 text-gray-500 hover:text-black"
-                      onClick={closePopup2}
-                    >
-                      <FiX />
-                    </button>
-                    <div className="space-y-4">
-                      {popupData2?.selectedItems?.map((item, index) => (
-                        <div key={index} className="flex items-center justify-between">
-                          <span>{item.productName}</span>
-                          <span>{item.selected.join(" , ")}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
+      {popupData2 && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg shadow-lg w-[90%] max-w-2xl p-6 relative">
+            <h2 className="text-2xl font-bold mb-4">Order Details</h2>
+            <button
+              className="absolute top-4 right-4 text-gray-500 hover:text-black"
+              onClick={closePopup2}
+            >
+              <FiX />
+            </button>
+            <div className="space-y-4">
+              {popupData2?.selectedItems?.map((item, index) => (
+                <div key={index} className="flex items-center justify-between">
+                  <span>{item.productName}</span>
+                  <span>{item.selected.join(" , ")}</span>
                 </div>
-              )}
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
 
       {selectedImage && (
         <PopupDesign

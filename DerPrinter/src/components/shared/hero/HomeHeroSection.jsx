@@ -46,7 +46,7 @@ function HomeHeroSection({ slidesData }) {
                             to={`/Category/${slide.link}`}
                             className="link"
                           >
-                            Learn More
+                            Mehr anzeigen
                           </Link>
                         )}
                       </div>

@@ -86,7 +86,7 @@ const SideMenu = ({ menuRef, setOpenMenu }) => {
                 onClick={() => setOpenMenu(false)}
                 className="hover:underline sm:text-[18px] text-[15px] text-black"
               >
-                Adresse
+                Adressbuch
               </Link>
             </li>
             <li>
@@ -113,7 +113,7 @@ const SideMenu = ({ menuRef, setOpenMenu }) => {
                 onClick={() => setOpenMenu(false)}
                 className="hover:underline sm:text-[18px] text-[15px] text-black"
               >
-                cart
+                Warenkorb
               </Link>
             </li>
           </ul>

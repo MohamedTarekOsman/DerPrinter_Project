@@ -1,7 +1,5 @@
 import { useGetData } from "../../CustomHooks/useGetData";
-import {
-  useUpdateDataWithImage,
-} from "../../CustomHooks/useUpdateDate";
+import { useUpdateDataWithImage } from "../../CustomHooks/useUpdateDate";
 import { useInsertDataWithImage } from "../../CustomHooks/useInsertData";
 import {
   CREATE_BLOG,

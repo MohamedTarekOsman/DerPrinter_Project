@@ -5,7 +5,20 @@ import { useDispatch } from "react-redux";
 import toast from "react-hot-toast";
 import { getAllOrders, updateImageStatus } from "../../Redux/actions/OrderAction";
 
-const statuses = ["success", "error in design", "updated"];
+const statuses = [
+  { 
+    value:"success",
+    Text:"Erfolg"
+  },
+  { 
+    value:"error in design",
+    Text:"Fehler im Design"
+  },
+  { 
+    value:"updated",
+    Text:"aktualisiert"
+  },
+];
 
 const PopupDesign = ({ closePopup, selectedImage }) => {
   const dispatch = useDispatch();
@@ -61,7 +74,7 @@ const PopupDesign = ({ closePopup, selectedImage }) => {
                     download
                     className="text-blue-500 m-5"
                 >
-                    Download File
+                    Datei herunterladen
                 </a>
             )
         )}
@@ -81,8 +94,8 @@ const PopupDesign = ({ closePopup, selectedImage }) => {
                 Choose
               </option>
               {statuses.map((status, idx) => (
-                <option key={idx} value={status}>
-                  {status}
+                <option key={idx} value={status.value}>
+                  {status.Text}
                 </option>
               ))}
             </select>

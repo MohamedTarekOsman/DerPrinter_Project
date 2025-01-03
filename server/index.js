@@ -5,19 +5,19 @@ const app = express();
 const fs = require("fs");
 const dotenv = require("dotenv");
 const mountRoutes = require("./routes");
-
-// const allowedDomain = "https://derprinter.softforte.site";
-// app.use(
-//   cors({
-//     origin: (origin, callback) => {
-//       if (origin === allowedDomain || !origin) {
-//         callback(null, true);
-//       } else {
-//         callback(new Error("Not allowed by CORS"));
-//       }
-//     },
-//   })
-// );
+const braintree = require("braintree");
+const allowedDomain = "https://derprinter.softforte.site";
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      if (origin === allowedDomain || !origin) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+  })
+);
 app.use(cors());
 app.options("*", cors());
 app.use(express.json());
@@ -26,6 +26,37 @@ dotenv.config({ path: "config.env" });
 mountRoutes(app);
 const dbconnection = require("./config/dataBase");
 dbconnection();
+
+app.get('/initializeBraintree', async (req, res) =>  {
+  const gateway = braintree.connect({
+      "environment": braintree.Environment.Sandbox,
+      "merchantId": "YOUR MERCHANT ID",
+      "publicKey": "YOUR PUBLIC KEY",
+      "privateKey": "PRIVATE KEY"
+  });
+  let token = (await gateway.clientToken.generate({})).clientToken;
+  res.send({data: token});
+});
+
+app.post('/confirmBraintree', async (req, res) =>  {
+  const data = req.body;
+  const gateway = braintree.connect({
+      "environment": braintree.Environment.Sandbox,
+      "merchantId": "MERCHANT ID",
+      "publicKey": "PUBLIC KEY",
+      "privateKey": "PRIVATE KEY"
+  });
+  let transactionResponse = await gateway.transaction.sale({
+      amount: data.amount,
+      paymentMethodNonce: data.nonce,
+      options: {
+          submitForSettlement: true
+        }
+  });
+  
+  console.log(transactionResponse);
+  res.send({data: transactionResponse});
+});
 
 const sslOptions = {
   key: fs.readFileSync("ssl/nginx-selfsigned.key"), // Path to your private key
@@ -40,7 +71,7 @@ const server = https
   });
 
 // const server=app.listen(port,() => {
-//     ;
+//   console.log(`Server is running on port ${port}`);
 // });
 
 

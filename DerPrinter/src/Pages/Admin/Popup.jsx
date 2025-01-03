@@ -2,21 +2,48 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
-import { FaTrash, FaArrowDown, FaArrowRight, FaStar } from "react-icons/fa";
-import { useDispatch, useSelector } from 'react-redux';
-import { createProduct, deleteProduct, getAllProducts, updateProduct } from "../../Redux/actions/productsAction";
+import { FaTrash, FaArrowDown, FaArrowRight, FaStar, FaEdit } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  createProduct,
+  deleteProduct,
+  getAllProducts,
+  updateProduct,
+} from "../../Redux/actions/productsAction";
 import AddProductModal from "./AddProductModal";
 import toast from "react-hot-toast";
-
+import Swal from "sweetalert2";
+import UpdateProductModal from "./EditProductModal";
 
 const Popup = ({ togglePopup, selectedCategoryId, selectedCategoryName }) => {
   const dispatch = useDispatch();
   const allProducts = useSelector((state) => state.products.allProducts);
   const [isModalOpen, setModalOpen] = useState(false);
+  const [isEditModalOpen, setEditModalOpen] = useState(false);
   const [isLoading, setLoading] = useState(false);
   const [grid, setGrid] = useState([[]]);
-  const [selectedProduct, setSelectedProduct] = useState(null);
   const [salePercent, setSalePercent] = useState("");
+
+  const [selectedProduct, setSelectedProduct] = useState(null);
+const [isUpdateModalOpen, setUpdateModalOpen] = useState(false);
+
+const handleEditProduct = (product) => {
+  setSelectedProduct(product);
+  setUpdateModalOpen(true);
+};
+
+const handleUpdateProduct = async (id,formData) => {
+  try {
+    await dispatch(updateProduct(id,formData));
+    await dispatch(getAllProducts());
+    setUpdateModalOpen(false);
+    toast.success("Produkt erfolgreich aktualisiert!");
+  } catch (error) {
+    toast.error("Fehler beim Aktualisieren des Produkts");
+  }
+};
+
+  
 
   useEffect(() => {
     const run = async () => {
@@ -54,18 +81,19 @@ const Popup = ({ togglePopup, selectedCategoryId, selectedCategoryName }) => {
 
       // Dispatch the update action
       await dispatch(updateProduct(product._id, updatedProduct));
-  
+
       // Refresh the product list to fetch updated state
       await dispatch(getAllProducts());
-  
+
       toast.success(
-        `Product ${updatedProduct.bestSeller ? "marked as" : "removed from"} Best Seller!`
+        `Product ${
+          updatedProduct.bestSeller ? "marked as" : "removed from"
+        } Best Seller!`
       );
     } catch (err) {
       toast.error("Error updating Best Seller status");
     }
   };
-  
 
   const handleSalePercentChange = async () => {
     if (selectedProduct) {
@@ -136,13 +164,26 @@ const Popup = ({ togglePopup, selectedCategoryId, selectedCategoryName }) => {
   };
 
   const handleDeleteProduct = async (product) => {
-    try {
-      await dispatch(deleteProduct(product._id));
-      await dispatch(getAllProducts());
-      toast.success("Product deleted successfully!");
-    } catch (e) {
-      toast.error("Error");
-    }
+    Swal.fire({
+      title: "Sind Sie sicher?",
+      text: "Dieses Produkt wird dauerhaft gelöscht!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Ja, löschen!",
+      cancelButtonText: "Abbrechen",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          await dispatch(deleteProduct(product._id));
+          await dispatch(getAllProducts());
+          toast.success("Produkt erfolgreich gelöscht!");
+        } catch (error) {
+          toast.error("Fehler beim Löschen des Produkts");
+        }
+      }
+    });
   };
 
   const handleAddProduct = async (formData) => {
@@ -169,7 +210,9 @@ const Popup = ({ togglePopup, selectedCategoryId, selectedCategoryName }) => {
           &times;
         </button>
 
-        <h2 className="text-center text-xl font-bold mb-6">{selectedCategoryName} Produkte</h2>
+        <h2 className="text-center text-xl font-bold mb-6">
+          {selectedCategoryName} Produkte
+        </h2>
 
         {/* Row of Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 mb-6">
@@ -195,15 +238,23 @@ const Popup = ({ togglePopup, selectedCategoryId, selectedCategoryName }) => {
                     className="w-full h-40 rounded-md mb-2"
                   />
                   <FaStar
-                      size={16}
-                      onClick={() => toggleBestSeller(product)}
-                      className={`cursor-pointer absolute top-2 right-2 ${
-                        product.bestSeller ? "text-yellow-500" : "text-gray-400"
-                      }`}
-                    />
+                    size={16}
+                    onClick={() => toggleBestSeller(product)}
+                    className={`cursor-pointer absolute top-2 right-2 ${
+                      product.bestSeller ? "text-yellow-500" : "text-gray-400"
+                    }`}
+                  />
+                  
                   <p className="text-xs text-gray-600 text-center flex gap-5">
+                  <FaEdit
+                      size={16}
+                      onClick={() => handleEditProduct(product)}
+                    />
                     {product.name}
-                    <FaTrash size={16} onClick={() => handleDeleteProduct(product)} />
+                    <FaTrash
+                      size={16}
+                      onClick={() => handleDeleteProduct(product)}
+                    />
                   </p>
                 </div>
               ))}
@@ -213,28 +264,30 @@ const Popup = ({ togglePopup, selectedCategoryId, selectedCategoryName }) => {
 
         {selectedProduct && (
           <div className="mb-4 ml-[44%]">
-          <label htmlFor="salePercent" className="block text-sm font-medium text-gray-700 mb-1">
-            Sale Percent
-          </label>
-          <input
-            id="salePercent"
-            type="number"
-            value={salePercent}
-            min={0}
-            max={100}
-            onChange={(e) => setSalePercent(e.target.value)}
-            onBlur={handleSalePercentChange}
-            className="w-24 px-2 py-1 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-            placeholder="e.g., 10%"
-          />
-        </div>
-        
+            <label
+              htmlFor="salePercent"
+              className="block text-sm font-medium text-gray-700 mb-1"
+            >
+              Sale Percent
+            </label>
+            <input
+              id="salePercent"
+              type="number"
+              value={salePercent}
+              min={0}
+              max={100}
+              onChange={(e) => setSalePercent(e.target.value)}
+              onBlur={handleSalePercentChange}
+              className="w-24 px-2 py-1 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              placeholder="e.g., 10%"
+            />
+          </div>
         )}
 
         <h2 className="text-center text-lg font-semibold mb-6">BERECHNEN</h2>
 
- {/* Table */}
- <div className="overflow-x-auto">
+        {/* Table */}
+        <div className="overflow-x-auto">
           <div className="grid gap-y-4">
             {grid.map((row, rowIndex) => (
               <div key={rowIndex}>
@@ -269,7 +322,10 @@ const Popup = ({ togglePopup, selectedCategoryId, selectedCategoryName }) => {
                   )}
 
                   {row.map((cell, columnIndex) => (
-                    <div key={columnIndex} className="flex items-center relative">
+                    <div
+                      key={columnIndex}
+                      className="flex items-center relative"
+                    >
                       <input
                         type="text"
                         value={cell}
@@ -278,14 +334,14 @@ const Popup = ({ togglePopup, selectedCategoryId, selectedCategoryName }) => {
                         }
                         className="p-2 border rounded-md w-24"
                       />
-                      {(rowIndex === 0 && columnIndex < row.length) ? (
+                      {rowIndex === 0 && columnIndex < row.length ? (
                         <div
                           className="flex items-center justify-center rounded-full p-2 ml-2 cursor-pointer"
                           onClick={() => removeColumn(columnIndex)}
                         >
                           <FaTrash size={16} />
                         </div>
-                      ):(
+                      ) : (
                         <div className="p-2 ml-2 text-white">
                           <FaTrash size={16} />
                         </div>
@@ -303,8 +359,9 @@ const Popup = ({ togglePopup, selectedCategoryId, selectedCategoryName }) => {
 
         <div className="mt-6 text-center">
           <button
-          onClick={handleSubmit}
-          className="bg-black text-white py-2 px-6 rounded-md hover:bg-gray-950">
+            onClick={handleSubmit}
+            className="bg-black text-white py-2 px-6 rounded-md hover:bg-gray-950"
+          >
             Absenden
           </button>
         </div>
@@ -316,6 +373,14 @@ const Popup = ({ togglePopup, selectedCategoryId, selectedCategoryName }) => {
         onSubmit={handleAddProduct}
         isLoading={isLoading}
       />
+      <UpdateProductModal
+        isOpen={isUpdateModalOpen}
+        onClose={() => setUpdateModalOpen(false)}
+        onSubmit={handleUpdateProduct}
+        selectedProduct={selectedProduct}
+        isLoading={isLoading}
+      />
+
     </div>
   );
 };

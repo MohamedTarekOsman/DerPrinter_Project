@@ -21,6 +21,7 @@
     "clsx": "^2.1.1",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
+    "emailjs-com": "^3.2.0",
     "embla-carousel-react": "^8.5.1",
     "express": "^4.21.2",
     "firebase": "^11.1.0",
@@ -39,6 +40,7 @@
     "redux": "^5.0.1",
     "redux-thunk": "^3.1.0",
     "slick-carousel": "^1.8.1",
+    "sweetalert2": "^11.15.9",
     "swiper": "^11.1.15",
     "tailwind-merge": "^2.5.5",
     "universal-cookie": "^7.2.2"

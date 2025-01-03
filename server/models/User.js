@@ -56,6 +56,18 @@ const UserSchema = new mongoose.Schema({
         enum:['admin','company','user'],
         default:'user',
     },
+    passwordResetCode:{
+        type:String
+    },
+    id:{
+        type:String,
+    },
+    passwordResetExpires:{
+        type:Date
+    },
+    passwordResetVerified:{
+        type:Boolean
+    },
     ratingStars:{
         type: Number,
         min: [1,'rating must be above 1'],

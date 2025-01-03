@@ -25,7 +25,14 @@ const ProductHighlightCard = ({ image, category, title, description, id }) => {
           {title}
         </h3>
         {/* الوصف */}
-        <p className="text-sm text-gray-600 line-clamp-2">{description}</p>
+        <p className="text-sm text-gray-600 line-clamp-2 pb-4">{description}</p>
+        <a
+              href={`/blogDetails/${id}`}
+              className="mt-6 px-4 py-2 bg-black text-white rounded-md hover:bg-gray-800"
+            >
+              Lesen
+            </a>
+          
       </div>
     </div>
   );

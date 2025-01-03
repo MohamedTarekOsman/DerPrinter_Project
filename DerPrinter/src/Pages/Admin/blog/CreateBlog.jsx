@@ -4,6 +4,12 @@ import Loader from "../../../components/Loader";
 import { createBlog } from "../../../Redux/actions/BlogAction";
 import toast from "react-hot-toast";
 import Input from "../../../components/ui/Input";
+import Breadcamp from "../../../components/ui/Breadcamp";
+
+const links = [
+  { name: "Der Blog", link: "blog" },
+  { name: "Blog erstellen", link: "" },
+];
 
 const CreateBlog = () => {
   const dispatch = useDispatch();
@@ -50,6 +56,7 @@ const CreateBlog = () => {
 
   return (
     <div className="mt-7 w-full">
+      <Breadcamp isDash={true} links={links} />
       <h2 className="text-[30px] font-bold">Der Blog</h2>
       <div className="px-10 mt-5">
         <form onSubmit={handleSubmit}>

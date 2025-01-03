@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
 import { FiCheck } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
@@ -89,7 +90,7 @@ const PaymentMethod = () => {
 
   return (
     <div className="min-h-screen bg-white flex flex-col items-center justify-center">
-      <h1 className="text-2xl font-bold mb-6">Choose Payment Method</h1>
+      <h1 className="text-2xl font-bold mb-6">Zahlungsmethode auswählen</h1>
       <div className="grid grid-cols-2 gap-6 mb-6">
         {/* Cash Option */}
         <div
@@ -98,7 +99,7 @@ const PaymentMethod = () => {
             selectedMethod === "Cash" ? "border-blue-500" : "border-gray-300"
           } rounded-lg p-4 cursor-pointer text-center hover:shadow-lg`}
         >
-          <p className="text-lg font-bold">Cash</p>
+          <p className="text-lg font-bold">Kasse</p>
           {selectedMethod === "Cash" && <FiCheck className="text-blue-500 text-2xl mt-2" />}
         </div>
 
@@ -109,7 +110,7 @@ const PaymentMethod = () => {
             selectedMethod === "Visa" ? "border-blue-500" : "border-gray-300"
           } rounded-lg p-4 cursor-pointer text-center hover:shadow-lg`}
         >
-          <p className="text-lg font-bold">Visa</p>
+          <p className="text-lg font-bold">Visum</p>
           {selectedMethod === "Visa" && <FiCheck className="text-blue-500 text-2xl mt-2" />}
         </div>
       </div>
@@ -125,7 +126,7 @@ const PaymentMethod = () => {
             : "bg-gray-400 cursor-not-allowed"
         }`}
       >
-        Continue
+        Weiter
       </button>
       
     </div>

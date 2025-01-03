@@ -37,7 +37,7 @@ const ProductCard = ({ product,buttonText, link }) => {
         // onClick={()=>{navigate(`${link}/${product._id}`)}}
         onClick={()=>{navigate(btnLink)}}
         className="mt-4 bg-black text-white py-2 px-4 rounded hover:bg-gray-800 txt-small">
-          {buttonText?buttonText:"Mehr anzeigen"}
+          {buttonText?buttonText:"Zum Produkt"}
         </button>
       </div>
     </div>

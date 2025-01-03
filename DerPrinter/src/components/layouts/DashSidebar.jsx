@@ -67,7 +67,11 @@ const DashSidebar = ({ toggleSidebar, isOpen }) => {
               </p>
             </Link>
             <Link to={`/dashboard/blog`} className="flex items-center gap-3">
-              <img src={blogicon} alt="blogicon" className="w-10 h-10 text-white filter invert" />
+              <img
+                src={blogicon}
+                alt="blogicon"
+                className="w-10 h-10 text-white filter invert"
+              />
               <p className="text-white md:text-[18px] text-[15px]">Blog</p>
             </Link>
 

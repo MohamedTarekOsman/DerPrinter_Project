@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import BlogCard from "../BlogCard/BlogCard";
 import { fetchHomeOrBlogsData } from "../../Utils/GetApi";
+import BlogHero from "../BlogHero/BlogHero";
 
-const BlogList = ({ title, id }) => {
+const BlogList = ({ title, id, blogsPage }) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -10,7 +11,6 @@ const BlogList = ({ title, id }) => {
     async function loadHomeData() {
       const data = await fetchHomeOrBlogsData("blogs");
 
-      // استبعاد المنتج الذي يحتوي على نفس _id
       const filteredProducts = data.filter((product) => product._id !== id);
       setProducts(filteredProducts);
 
@@ -18,7 +18,7 @@ const BlogList = ({ title, id }) => {
       ;
     }
     loadHomeData();
-  }, [id]); // إضافة `id` كاعتماد لإعادة تحميل البيانات عند تغييره
+  }, [id]); 
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -30,7 +30,17 @@ const BlogList = ({ title, id }) => {
       {loading ? (
         <p>Loading ...</p>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <>
+        {blogsPage ?
+        <>
+        <BlogHero
+              image={products[0].image1}
+              category={products[0].category}
+              title={products[0].title}
+              description={products[0].description1}
+              id={products[0]._id}            
+            />
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {products.map((product, index) => (
             <div key={index} className="w-full sm:w-1/1">
               <BlogCard
@@ -43,6 +53,22 @@ const BlogList = ({ title, id }) => {
             </div>
           ))}
         </div>
+           </> : <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {products.map((product, index) => (
+            <div key={index} className="w-full sm:w-1/1">
+              <BlogCard
+                image={product.image1}
+                category={product.category}
+                title={product.title}
+                description={product.description1}
+                id={product._id}
+              />
+            </div>
+          ))}
+        </div>
+          }
+        
+        </>
       )}
     </div>
   );

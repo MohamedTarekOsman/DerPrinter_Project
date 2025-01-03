@@ -11,6 +11,7 @@ import { FaPhoneVolume } from "react-icons/fa6";
 import { CgMail } from "react-icons/cg";
 import { ImLocation } from "react-icons/im";
 import Cookies from "universal-cookie";
+import { Link } from "react-router-dom";
 
 const ProfileSidebar = ({ setSidebarOpen }) => {
   const cookies = new Cookies();
@@ -31,17 +32,17 @@ const ProfileSidebar = ({ setSidebarOpen }) => {
           className="md:w-[190px] sm:w-[160px] w-[135px] md:h-[88px] mx-auto my-3"
         />
         <h2 className="lg:text-[30px] md:text-[25px] text-[20px] font-bold mb-2 text-black">
-          {user?.name}
+          {user?.role=="male"?"Herr : ":"Frau : "} {user?.name}
         </h2>
         <p className="text-black/80 md:text-[17px] text-[15px]">
-          Kundennummer: {user?.phone}
+          Kundennummer: {user?.id}
         </p>
         <p
           onClick={() => {
             cookies.remove("user");
             window.location.href = "/login";
           }}
-          className="block mt-2 text-black/80 md:text-[17px] text-[15px] cursor-pointer"
+          className="block mt-2 text-black/80 md:text-[17px] text-[15px] cursor-pointer text-red-500"
         >
           ausloggen
         </p>
@@ -50,12 +51,12 @@ const ProfileSidebar = ({ setSidebarOpen }) => {
 
         <div className="flex flex-col">
           <h3 className="font-bold text-lg text-black">KUNDENBEREICH</h3>
-          <a href="#" className="mt-2 text-black/80 md:text-[17px] text-[15px]">
+          <Link to="/orderoverview" className="mt-2 text-black/80 md:text-[17px] text-[15px]">
             Auftragsübersicht
-          </a>
-          <a href="#" className="mt-2 text-black/80 md:text-[17px] text-[15px]">
+          </Link>
+          <Link to="/Address" className="mt-2 text-black/80 md:text-[17px] text-[15px]">
             Adressbuch
-          </a>
+          </Link>
         </div>
 
         <hr className="my-4 bg-black/60 block w-full h-[2px]" />
@@ -63,7 +64,7 @@ const ProfileSidebar = ({ setSidebarOpen }) => {
         <div className="flex flex-col">
           <img src={profile} alt="profile" className="w-[150px] mx-auto" />
           <h3 className="font-bold lg:text-xl md:text-lg text-[15px] md:my-4 my-3">
-            PERSÖNLICHE FACHBERATUNG
+            Persönliche Kontaktdaten
           </h3>
           <div className="flex flex-col gap-3">
             <div className="flex items-center gap-3">
@@ -92,16 +93,16 @@ const ProfileSidebar = ({ setSidebarOpen }) => {
         <div>
           <h3 className="font-bold md:text-lg text-[15px]">Folgen Sie uns</h3>
           <div className="flex gap-4 mt-2">
-            <a href="#" className="block" target="_blank">
+            <a href="https://www.facebook.com/profile.php?id=61570682215802&mibextid=ZbWKwL" className="block" target="_blank">
               <img src={facebook} alt="" />
             </a>
-            <a href="#" className="block " target="_blank">
+            <a href="https://www.instagram.com/derprinter.official/profilecard/?igsh=b3h5MndraWdqMm5j" className="block " target="_blank">
               <img src={instagram} alt="" />
             </a>
-            <a href="#" className="block " target="_blank">
+            <a href="https://x.com/Derprinter_off?t=VVZ1A7yAuf0iDJhljrDdHQ&s=09" className="block " target="_blank">
               <img src={twitter} alt="" />
             </a>
-            <a href="#" className="block " target="_blank">
+            <a href="https://pin.it/5AYzrGnU9" className="block " target="_blank">
               <img src={social} alt="" />
             </a>
           </div>

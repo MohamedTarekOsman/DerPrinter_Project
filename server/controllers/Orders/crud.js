@@ -8,8 +8,14 @@ const createOrder = AsyncHandler(async (req, res) => {
     // The image URLs are provided by Cloudinary through multer
     // const images = req.files ? req.files.map((file) => file.path) : []; // Handling multiple files
 
+    const lastOrder = await Orders.findOne().sort({ createdAt: -1 }); // Assuming you have a `createdAt` field
+
+    // Generate the next order ID
+    const lastOrderId = lastOrder?.id || "der4999"; // Default to der4999 if no orders exist
+    const nextOrderId = "der" + (parseInt(lastOrderId.slice(3)) + 1);
     // Create the Order
     const order = await Orders.create({
+        id: nextOrderId,
         name,
         price,
         status,

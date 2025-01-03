@@ -1,8 +1,10 @@
-import { LOGIN, LOGOUT, REGISTER, AUTH_ERROR } from "../types/Types";
+import { LOGIN, LOGOUT, REGISTER, AUTH_ERROR, FOREGT_PASSWORD, VERIFY_PASSWORD, RESET_PASSWORD, GET_ERROR } from "../types/Types";
 import { useLogin } from "../../CustomHooks/useLogin";
 import { useRegister } from "../../CustomHooks/useRegister";
 import { useLogout } from "../../CustomHooks/useLogout";
 import Cookies from "universal-cookie";
+import { useInsertData } from "../../CustomHooks/useInsertData";
+import { useUpdateData } from "../../CustomHooks/useUpdateDate";
 
 const cookies = new Cookies();
 
@@ -137,3 +139,59 @@ export const logoutUser = () => async (dispatch) => {
     });
   }
 };
+
+//1-foregt  passwrod 
+export const forgetPassword = (data) => async (dispatch) => {
+  try {
+      const response = await useInsertData(`/api/v1/user/forgotPassword`, data);
+      dispatch({
+          type: FOREGT_PASSWORD,
+          payload: response,
+          loading: true
+      })
+
+  } catch (e) {
+      dispatch({
+          type: GET_ERROR,
+          payload: e.response,
+      })
+  }
+}
+
+
+//2-verify  passwrod 
+export const verifyPassword = (data) => async (dispatch) => {
+  try {
+      const response = await useInsertData(`/api/v1/user/verifyResetCode`, data);
+      dispatch({
+          type: VERIFY_PASSWORD,
+          payload: response,
+          loading: true
+      })
+
+  } catch (e) {
+      dispatch({
+          type: GET_ERROR,
+          payload: e.response,
+      })
+  }
+}
+
+
+//2-reset  passwrod 
+export const resetPassword = (data) => async (dispatch) => {
+  try {
+      const response = await useUpdateData(`/api/v1/user/resetPassword`, data);
+      dispatch({
+          type: RESET_PASSWORD,
+          payload: response,
+          loading: true
+      })
+
+  } catch (e) {
+      dispatch({
+          type: GET_ERROR,
+          payload: e.response,
+      })
+  }
+}

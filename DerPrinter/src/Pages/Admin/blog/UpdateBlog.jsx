@@ -5,7 +5,13 @@ import Input from "../../../components/ui/Input";
 import Loader from "../../../components/Loader";
 import toast from "react-hot-toast";
 import { useParams } from "react-router-dom";
+import Breadcamp from "../../../components/ui/Breadcamp";
 // import { uploadImg } from "../../../lib/utils";
+
+const links = [
+  { name: "Der Blog", link: "blog" },
+  { name: "Blog aktualisieren", link: "" },
+];
 
 const UpdateBlog = () => {
   const dispatch = useDispatch();
@@ -56,8 +62,6 @@ const UpdateBlog = () => {
     dispatch(getAllBlogs());
   }, [dispatch]);
 
-  ;
-
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -88,6 +92,7 @@ const UpdateBlog = () => {
 
   return (
     <div className="mt-7 w-full">
+      <Breadcamp isDash={true} links={links} />
       <h2 className="text-[30px] font-bold">Blog aktualisieren</h2>
       <form onSubmit={handleSubmit} className="px-10 mt-5">
         <div className="mb-6 border-b pb-4">
@@ -143,7 +148,7 @@ const UpdateBlog = () => {
               />
               {image1 && (
                 <img
-                  src={image1}
+                  src={image1.name?URL.createObjectURL(image1):image1}
                   className="h-24 w-24 object-contain"
                   alt="img1"
                 />
@@ -157,7 +162,7 @@ const UpdateBlog = () => {
               />
               {image2 && (
                 <img
-                  src={image2}
+                  src={image2.name?URL.createObjectURL(image2):image2}
                   className="h-24 w-24 object-contain"
                   alt="img2"
                 />

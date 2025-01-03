@@ -4,7 +4,7 @@ import { useState } from "react";
 
 const AdminDashBoard = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  
+
   return (
     <div className="flex">
       <DashSidebar
@@ -19,11 +19,10 @@ const AdminDashBoard = () => {
         } p-6 bg-white rounded-l-2xl transition-all duration-300`}
       >
         {/* Overview */}
-        <Outlet /> 
+        <Outlet />
       </div>
     </div>
   );
 };
-
 
 export default AdminDashBoard;
